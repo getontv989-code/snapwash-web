@@ -135,7 +135,7 @@
   if (tour) {
     var tTabs = Array.prototype.slice.call(tour.querySelectorAll("[data-step]"));
     var tViews = Array.prototype.slice.call(tour.querySelectorAll(".app-view"));
-    var tMs = 3600, tCur = 0, tTimer = null;
+    var tMs = 5200, tCur = 0, tTimer = null;
     tour.style.setProperty("--tour-ms", tMs + "ms");
     function show(n) {
       tViews[tCur].classList.remove("is-active");
@@ -143,6 +143,7 @@
       var leaving = tViews[tCur];
       setTimeout(function () { leaving.classList.remove("is-leaving"); }, 600);
       tCur = (n + tViews.length) % tViews.length;
+      tour.setAttribute("data-step", String(tCur));
       tViews.forEach(function (v, i) {
         if (i === tCur) {
           // restart the screen's own entrance animations
@@ -201,46 +202,47 @@
   var scanBtn = document.getElementById("scan-btn");
   if (scanBtn) {
     var stage = document.getElementById("scan-phone");
-    var label = document.getElementById("scan-label");
     var bag = document.getElementById("bag");
-    var shapes = document.querySelectorAll(".viewfinder .garment");
+    var totalEl = document.querySelector("#bag-total b");
+    var boxes = document.querySelectorAll(".viewfinder .vf-box");
     var items = [
-      { name: "Oxford shirt", color: "White", hex: "#FFFFFF", shape: 0 },
-      { name: "Wool blazer", color: "Navy", hex: "#1D2B5C", shape: 1 },
-      { name: "Slim chinos", color: "Khaki", hex: "#C9B48A", shape: 2 },
-      { name: "Silk dress", color: "Black", hex: "#111111", shape: 3 },
-      { name: "Linen shirt", color: "Sky blue", hex: "#9DBDFF", shape: 0 }
+      { name: "Dress", detail: "Red · Press", img: "/app/dress.webp", price: 3 },
+      { name: "Pants", detail: "Patterned · Dry clean + Press", img: "/app/pants.webp", price: 8 },
+      { name: "T-Shirt / Polo", detail: "Black · Dry clean + Press", img: "/app/polo.webp", price: 6 }
     ];
-    // Runs on its own in a loop: scan each item, then clear the bag and start again
-    var idx = 0, scanMs = reduce ? 200 : 1400, gapMs = 1100, loopTimer = null;
+    // Runs on its own in a loop: sweep the photo, box each garment, add it to the bag, then start again
+    var idx = 0, total = 0, scanMs = reduce ? 200 : 1300, gapMs = 900, loopTimer = null;
     var btnText = scanBtn.querySelector("span");
-    function showShape(n) { shapes.forEach(function (s, i) { s.classList.toggle("is-off", i !== n); }); }
+    function money(n) { return "$" + n.toFixed(2); }
     function reset() {
-      idx = 0; bag.innerHTML = '<li class="bag-empty">Your bag is empty.</li>';
-      showShape(items[0].shape); label.classList.remove("is-on");
+      idx = 0; total = 0; totalEl.textContent = money(0);
+      bag.innerHTML = '<li class="bag-empty">Your bag is empty.</li>';
+      boxes.forEach(function (b) { b.classList.remove("is-found"); });
+      stage.classList.remove("is-done");
     }
     function scanNext() {
       if (idx >= items.length) { reset(); loopTimer = setTimeout(scanNext, gapMs); return; }
-      var it = items[idx];
-      showShape(it.shape);
-      label.classList.remove("is-on");
+      var it = items[idx], n = idx;
       stage.classList.add("is-scanning");
       btnText.textContent = "Scanning";
       loopTimer = setTimeout(function () {
         stage.classList.remove("is-scanning");
-        label.textContent = it.name + " · " + it.color;
-        label.classList.add("is-on");
+        boxes[n].classList.add("is-found");
         var empty = bag.querySelector(".bag-empty");
         if (empty) empty.remove();
         var li = document.createElement("li");
-        li.innerHTML = "<i></i><span></span><span></span>";
-        li.children[0].style.background = it.hex;
-        li.children[1].textContent = it.name;
-        li.children[2].textContent = it.color;
+        li.innerHTML = '<img alt="" width="160" height="160"><span><b></b><small></small></span><span class="pr"></span>';
+        li.querySelector("img").src = it.img;
+        li.querySelector("b").textContent = it.name;
+        li.querySelector("small").textContent = it.detail;
+        li.querySelector(".pr").textContent = money(it.price);
         bag.appendChild(li);
+        total += it.price; totalEl.textContent = money(total);
         idx++;
-        btnText.textContent = idx >= items.length ? "Bag ready · " + items.length + " items" : "Added to bag";
-        loopTimer = setTimeout(scanNext, idx >= items.length ? gapMs * 2.5 : gapMs);
+        var done = idx >= items.length;
+        stage.classList.toggle("is-done", done);
+        btnText.textContent = done ? items.length + " items identified · " + money(total) : "Added to bag";
+        loopTimer = setTimeout(scanNext, done ? gapMs * 3.5 : gapMs);
       }, scanMs);
     }
     function startScan() { if (!loopTimer) scanNext(); }

@@ -33,56 +33,73 @@ export default function HomePage() {
               <p className="kicker fade-up" style={{ "--d": ".85s" } as CSSProperties}>Free to join · Unlimited delivery $14.99/mo</p>
             </div>
             <div className="drum-col">
-              <div className="tour" id="tour" aria-label="A tour of the Snapwash app">
+              <div className="tour" id="tour" data-step="0" aria-label="A tour of the Snapwash app">
                 <ol className="tour-rail" role="tablist" aria-label="App tour steps">
-                  <li><button type="button" role="tab" aria-selected="true" aria-controls="ts-1" data-step="0"><span className="bar"><i></i></span>Choose a cleaner</button></li>
-                  <li><button type="button" role="tab" aria-selected="false" aria-controls="ts-2" data-step="1"><span className="bar"><i></i></span>Scan your clothes</button></li>
-                  <li><button type="button" role="tab" aria-selected="false" aria-controls="ts-3" data-step="2"><span className="bar"><i></i></span>Pick a pickup window</button></li>
-                  <li><button type="button" role="tab" aria-selected="false" aria-controls="ts-4" data-step="3"><span className="bar"><i></i></span>Track your driver</button></li>
-                  <li><button type="button" role="tab" aria-selected="false" aria-controls="ts-5" data-step="4"><span className="bar"><i></i></span>Get it delivered</button></li>
+                  <li><button type="button" role="tab" aria-selected="true" aria-controls="ts-1" data-step="0"><span className="bar"><i></i></span>Scan your clothes</button></li>
+                  <li><button type="button" role="tab" aria-selected="false" aria-controls="ts-2" data-step="1"><span className="bar"><i></i></span>Choose your cleaner</button></li>
+                  <li><button type="button" role="tab" aria-selected="false" aria-controls="ts-3" data-step="2"><span className="bar"><i></i></span>Schedule a pickup</button></li>
+                  <li><button type="button" role="tab" aria-selected="false" aria-controls="ts-4" data-step="3"><span className="bar"><i></i></span>Review your order</button></li>
+                  <li><button type="button" role="tab" aria-selected="false" aria-controls="ts-5" data-step="4"><span className="bar"><i></i></span>Track your driver</button></li>
                 </ol>
                 <div className="tour-phone">
                   <div className="tour-screen">
                     <div className="app-status" aria-hidden="true"><span>9:41</span><span className="notch"></span><span>5G</span></div>
-      
-                    <section className="app-view is-active" id="ts-1" role="tabpanel" aria-label="Choose a cleaner">
-                      <p className="app-eyebrow">Step 1 of 5</p>
-                      <h3 className="app-title">Cleaners near you</h3>
-                      <p className="app-field"><span>Deliver to</span>Your address</p>
-                      <ul className="shops">
-                        <li className="is-picked"><span className="shop-ic">DC</span><span><b>Corner Dry Cleaners</b><small>Dry cleaning · 0.3 mi</small></span><span className="tick" aria-hidden="true">✓</span></li>
-                        <li><span className="shop-ic">LM</span><span><b>Bedford Laundromat</b><small>Wash &amp; fold · 0.6 mi</small></span></li>
-                        <li><span className="shop-ic">PP</span><span><b>Prime Press</b><small>Dry cleaning · 0.9 mi</small></span></li>
+
+                    <section className="app-view av-scan is-active" id="ts-1" role="tabpanel" aria-label="Scan your clothes">
+                      <div className="a-head"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>Scan your clothes</div>
+                      <div className="a-cam">
+                        <img src="/app/scan-photo.webp" alt="A red dress, patterned pants and a black polo laid out on a table" width="763" height="616" />
+                        <span className="a-sweep"></span>
+                        <span className="a-box bx-1"><em>Dress · Red</em></span>
+                        <span className="a-box bx-2"><em>Pants · Patterned</em></span>
+                        <span className="a-box bx-3"><em>Polo · Black</em></span>
+                        <span className="a-shutter"></span>
+                      </div>
+                      <ul className="a-items">
+                        <li><img src="/app/dress.webp" alt="" width="160" height="160" /><span><b>Dress</b><small>Press</small></span><span className="pr">$3.00</span></li>
+                        <li><img src="/app/pants.webp" alt="" width="160" height="160" /><span><b>Pants</b><small>Dry cleaning + Press</small></span><span className="pr">$8.00</span></li>
+                        <li><img src="/app/polo.webp" alt="" width="160" height="160" /><span><b>T-Shirt / Polo</b><small>Dry cleaning + Press</small></span><span className="pr">$6.00</span></li>
+                      </ul>
+                      <span className="app-cta">Choose a cleaner</span>
+                    </section>
+
+                    <section className="app-view" id="ts-2" role="tabpanel" aria-label="Choose your cleaner">
+                      <h3 className="app-title">Choose your cleaner</h3>
+                      <div className="a-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="M16 16l4 4" /></svg>Search cleaners</div>
+                      <ul className="a-shops">
+                        <li className="is-pick"><span className="a-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9l1.5-4h13L20 9M4 9v10h16V9M4 9h16M10 19v-5h4v5" /></svg></span><span><b>Clean Avenue</b><small>Dry cleaning · Wash &amp; Fold</small><small className="mi">0.3 mi away</small></span><span className="a-radio"></span></li>
+                        <li><span className="a-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="2" /><circle cx="12" cy="13" r="4" /><path d="M8 7h2" /></svg></span><span><b>Gino&apos;s Dry Cleaning</b><small>Wash &amp; Fold</small><small className="mi">0.6 mi away</small></span><span className="a-radio"></span></li>
+                        <li><span className="a-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a2 2 0 1 1 2 2c-1 0-2 .6-2 2M12 11l-8 6h16z" /></svg></span><span><b>Parkway Cleaners</b><small>Dry cleaning</small><small className="mi">0.9 mi away</small></span><span className="a-radio"></span></li>
                       </ul>
                       <span className="app-cta">Continue</span>
                     </section>
-      
-                    <section className="app-view" id="ts-2" role="tabpanel" aria-label="Scan your clothes">
-                      <p className="app-eyebrow">Step 2 of 5</p>
-                      <h3 className="app-title">Scan your clothes</h3>
-                      <div className="app-finder">
-                        <span className="corner c1"></span><span className="corner c2"></span><span className="corner c3"></span><span className="corner c4"></span>
-                        <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" aria-hidden="true"><path d="M44 18 22 28 12 54l16 6 6-14v62h52V46l6 14 16-6-10-26-22-10c-2 8-8 12-16 12s-14-4-16-12z" /><path d="M60 30v78M50 44h20" /></svg>
-                        <span className="app-beam"></span>
-                        <span className="found">Oxford shirt · White</span>
+
+                    <section className="app-view" id="ts-3" role="tabpanel" aria-label="Schedule a pickup">
+                      <h3 className="app-title">Schedule pickup</h3>
+                      <div className="a-mode"><span className="a-car"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 16v2M19 16v2M4 16h16v-4l-2-5H6l-2 5zM4 12h16M8 14h.01M16 14h.01" /></svg></span><span><b>Driver pickup</b><small>Collected from your door</small></span><span className="a-ok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12.5l4 4 8-9" /></svg></span></div>
+                      <div className="a-fields">
+                        <p className="a-field f-1"><span>Pickup address</span><i><em className="ph">Enter address</em><em className="val">Upper West Side, NY</em></i></p>
+                        <p className="a-field f-2"><span>Pickup date</span><i><em className="ph">Select date</em><em className="val">Tomorrow</em></i></p>
+                        <p className="a-field f-3"><span>Pickup time</span><i><em className="ph">Select time</em><em className="val">6 – 8 pm</em></i></p>
+                        <p className="a-field f-4"><span>Driver instructions</span><i><em className="ph">Add instructions</em><em className="val">Leave with the doorman</em></i></p>
                       </div>
-                      <ul className="mini-bag"><li><i style={{ background: "#1D2B5C" } as CSSProperties}></i>Wool blazer · Navy</li><li><i style={{ background: "#C9B48A" } as CSSProperties}></i>Chinos · Khaki</li><li className="pop"><i style={{ background: "#FFFFFF" } as CSSProperties}></i>Oxford shirt · White</li></ul>
+                      <span className="app-cta">Continue</span>
                     </section>
-      
-                    <section className="app-view" id="ts-3" role="tabpanel" aria-label="Pick a pickup window">
-                      <p className="app-eyebrow">Step 3 of 5</p>
-                      <h3 className="app-title">When should we come?</h3>
-                      <div className="days"><span className="on">Today</span><span>Tomorrow</span><span>Thu</span></div>
-                      <ul className="slots">
-                        <li>4 – 6 pm</li>
-                        <li className="on">6 – 8 pm<span>Selected</span></li>
-                        <li>8 – 10 pm</li>
+
+                    <section className="app-view" id="ts-4" role="tabpanel" aria-label="Review your order">
+                      <h3 className="app-title">Review your order</h3>
+                      <div className="a-shop"><span className="a-hang"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8a2 2 0 1 1 2 2c-1 0-2 .6-2 2M12 12l-8 6h16z" /></svg></span><span><b>Clean Avenue</b><small>Dry cleaning · Wash &amp; Fold</small></span></div>
+                      <p className="a-sub"><span>Your items</span><span>Edit</span></p>
+                      <ul className="a-items a-items--rev">
+                        <li><img src="/app/dress.webp" alt="" width="160" height="160" /><span><b>Dress</b></span><span className="pr">$3.00</span></li>
+                        <li><img src="/app/pants.webp" alt="" width="160" height="160" /><span><b>Pants</b></span><span className="pr">$8.00</span></li>
+                        <li><img src="/app/polo.webp" alt="" width="160" height="160" /><span><b>T-Shirt / Polo</b></span><span className="pr">$6.00</span></li>
                       </ul>
-                      <div className="summary"><span>3 items · Corner Dry Cleaners</span><span>Unlimited: free delivery</span></div>
-                      <span className="app-cta">Place order</span>
+                      <div className="a-pick"><span className="a-car"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 16v2M19 16v2M4 16h16v-4l-2-5H6l-2 5zM4 12h16M8 14h.01M16 14h.01" /></svg></span><span><b>Driver pickup</b><small>We&apos;ll collect from your address</small></span></div>
+                      <span className="app-cta">Continue to checkout</span>
                     </section>
-      
-                    <section className="app-view" id="ts-4" role="tabpanel" aria-label="Track your driver">
+
+                    <section className="app-view" id="ts-5" role="tabpanel" aria-label="Track your driver">
                       <div className="app-map">
                         <svg viewBox="0 0 300 330" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                           <rect className="m-bg" width="300" height="330" />
@@ -96,20 +113,17 @@ export default function HomePage() {
                         </svg>
                       </div>
                       <div className="sheet">
-                        <p className="app-eyebrow">Step 4 of 5</p>
                         <div className="sheet-row"><span className="drv">MR</span><span><b>Driver on the way</b><small>Arriving in about 4 min</small></span></div>
                         <div className="sheet-actions"><span>Message</span><span>Share ETA</span></div>
                       </div>
                     </section>
-      
-                    <section className="app-view" id="ts-5" role="tabpanel" aria-label="Get it delivered">
-                      <div className="push"><b>Snapwash</b><span>Your order is clean and on its way back.</span></div>
-                      <p className="app-eyebrow">Step 5 of 5</p>
-                      <div className="done-check" aria-hidden="true"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24" /><path d="M15 27l7 7 15-16" /></svg></div>
-                      <h3 className="app-title" style={{ textAlign: "center" } as CSSProperties}>Delivered</h3>
-                      <div className="proof"><span className="proof-photo" aria-hidden="true"><svg viewBox="0 0 64 48"><rect x="4" y="6" width="56" height="38" rx="4" /><path d="M24 44V20h16v24" /><circle cx="36" cy="32" r="1.6" /></svg></span><span><b>Proof of delivery</b><small>Photo at your front door</small></span></div>
-                      <span className="app-cta ghost">Rate your order</span>
-                    </section>
+                  </div>
+                  <div className="tour-floats" aria-hidden="true">
+                    <div className="fl fl-0"><span className="fl-ic"><svg viewBox="0 0 24 24"><path d="M9 4l-5 3 2 4 2-1v10h8V10l2 1 2-4-5-3c-.5 1.5-1.7 2.3-3 2.3S9.5 5.5 9 4z" /></svg></span><span><b>3 items identified</b><small>Estimated total <strong>$17.00</strong></small></span></div>
+                    <div className="fl fl-1"><span className="fl-ic"><svg viewBox="0 0 24 24"><path d="M4 9l1.5-4h13L20 9M4 9v10h16V9M4 9h16M10 19v-5h4v5" /></svg></span><span><b>Clean Avenue</b><small className="blue">Selected cleaner</small></span><span className="fl-ok"><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4 8-9" /></svg></span></div>
+                    <div className="fl fl-2"><span className="fl-ic solid"><svg viewBox="0 0 24 24"><path d="M5 16v2M19 16v2M4 16h16v-4l-2-5H6l-2 5zM4 12h16M8 14h.01M16 14h.01" /></svg></span><span><b>Driver pickup</b><small>Tomorrow · 6 – 8 pm</small></span></div>
+                    <div className="fl fl-3"><span className="fl-ic"><svg viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7zM9 8a3 3 0 0 1 6 0" /></svg></span><span><small>3 items</small><b>Subtotal</b></span><strong className="fl-amt">$17.00</strong></div>
+                    <div className="fl fl-4"><span className="fl-ic solid"><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4 8-9" /></svg></span><span><b>Order confirmed</b><small>3 items · Clean Avenue</small></span></div>
                   </div>
                 </div>
                 <p className="tour-note">Example screens</p>
@@ -144,16 +158,15 @@ export default function HomePage() {
             <div className="scan-stage reveal" style={{ "--rd": ".1s" } as CSSProperties}>
               <div className="phone">
                 <div className="screen" id="scan-phone">
-                  <div className="screen-top"><span>Scan</span><span>Bag · NY</span></div>
+                  <div className="screen-top"><span>Scan your clothes</span><span>Bag · NY</span></div>
                   <div className="viewfinder">
-                    <span className="corner c1"></span><span className="corner c2"></span><span className="corner c3"></span><span className="corner c4"></span>
-                    <svg className="garment" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" aria-hidden="true"><path d="M44 18 22 28 12 54l16 6 6-14v62h52V46l6 14 16-6-10-26-22-10c-2 8-8 12-16 12s-14-4-16-12z" /><path d="M60 30v78M50 44h20" /></svg>
-      <svg className="garment is-off" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" aria-hidden="true"><path d="M42 14 20 26 14 108h36l10-46 10 46h36L100 26 78 14 60 46z" /><path d="M60 46v14M42 14l10 30M78 14 68 44" /></svg>
-      <svg className="garment is-off" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" aria-hidden="true"><path d="M34 12h52l6 100H70L60 42 50 112H28z" /><path d="M34 22h52M44 22v10M76 22v10" /></svg>
-      <svg className="garment is-off" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" aria-hidden="true"><path d="M46 10v18l-6 20 10 6-22 56h64L70 54l10-6-6-20V10" /><path d="M46 28h28M40 48h40" /></svg>
+                    <img src="/app/scan-photo.webp" alt="A red dress, patterned pants and a black polo laid out on a table" width="763" height="616" loading="lazy" />
+                    <span className="vf-box vb-0"><em>Dress · Red</em></span>
+                    <span className="vf-box vb-1"><em>Pants · Patterned</em></span>
+                    <span className="vf-box vb-2"><em>Polo · Black</em></span>
                     <span className="beam"></span>
-                    <span className="label" id="scan-label"></span>
                   </div>
+                  <p className="bag-total" id="bag-total"><span>Your bag</span><b>$0.00</b></p>
                   <ul className="bag" id="bag"><li className="bag-empty">Your bag is empty.</li></ul>
                   <div className="btn scan-btn" id="scan-btn" aria-hidden="true"><span>Scanning</span></div>
                   <p className="scan-note">Demo · items are examples</p>
