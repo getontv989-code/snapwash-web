@@ -174,19 +174,22 @@
     var view = hs.querySelector(".hsteps-viewport") || track.parentNode;
     var bar = hs.querySelector(".hsteps-progress");
     var mq = window.matchMedia("(max-width: 900px), (prefers-reduced-motion: reduce)");
+    // Moves one whole card at a time so exactly three complete cards are always in view
+    var cards = track.children;
+    function steps() { return Math.max(0, cards.length - 3); }
+    function stepPx() { return cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : 0; }
     function layout() {
       if (mq.matches) { hs.style.height = ""; track.style.transform = ""; return; }
-      var dist = track.scrollWidth - view.clientWidth;
-      hs.style.height = (window.innerHeight + Math.max(dist, 0)) + "px";
+      hs.style.height = Math.round(window.innerHeight * (1 + steps() * 0.6)) + "px";
       update();
     }
     function update() {
       if (mq.matches) return;
       var r = hs.getBoundingClientRect();
-      var dist = track.scrollWidth - view.clientWidth;
       var p = Math.min(1, Math.max(0, -r.top / (hs.offsetHeight - window.innerHeight || 1)));
-      track.style.transform = "translate3d(" + (-p * Math.max(dist, 0)) + "px,0,0)";
-      if (bar) bar.style.setProperty("--p", p.toFixed(3));
+      var k = Math.round(p * steps());
+      track.style.transform = "translate3d(" + (-k * stepPx()) + "px,0,0)";
+      if (bar) bar.style.setProperty("--p", steps() ? (k / steps()).toFixed(3) : "1");
     }
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", layout);
