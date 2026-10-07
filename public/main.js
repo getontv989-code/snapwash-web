@@ -154,15 +154,12 @@
         if (i === tCur && bar) { bar.style.animation = "none"; void bar.offsetWidth; bar.style.animation = ""; }
       });
     }
-    function play() { stop(); if (!reduce) tTimer = setInterval(function () { if (!tour.classList.contains("is-paused")) show(tCur + 1); }, tMs); }
+    // Cycles continuously; hovering or focusing the phone no longer pauses it
+    function play() { stop(); if (!reduce) tTimer = setInterval(function () { show(tCur + 1); }, tMs); }
     function stop() { if (tTimer) clearInterval(tTimer); tTimer = null; }
     tTabs.forEach(function (t, i) {
       t.addEventListener("click", function () { if (i !== tCur) show(i); play(); });
     });
-    tour.addEventListener("pointerenter", function () { tour.classList.add("is-paused"); });
-    tour.addEventListener("pointerleave", function () { tour.classList.remove("is-paused"); play(); });
-    tour.addEventListener("focusin", function () { tour.classList.add("is-paused"); });
-    tour.addEventListener("focusout", function () { tour.classList.remove("is-paused"); });
     document.addEventListener("visibilitychange", function () { if (document.hidden) stop(); else play(); });
     play();
   }
