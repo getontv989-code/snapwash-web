@@ -97,8 +97,10 @@ export default function DrivePage() {
       
         <section className="section quote-block night" aria-label="Driver review" style={{ paddingTop: "0" } as CSSProperties}>
           <div className="wrap grid reveal">
-            <blockquote><p>“Driving for Snapwash is the most <mark>flexible gig</mark> I've had. The app is smooth and payouts are always on time.”</p></blockquote>
-            <div className="who"><span className="avatar" aria-hidden="true">S</span><div><b>Sarah R.</b><span>Driver · New Jersey</span></div></div>
+            <figure className="quote quote--solo">
+              <blockquote><p>“Driving for Snapwash is the most <mark>flexible gig</mark> I've had. The app is smooth and payouts are always on time.”</p></blockquote>
+              <figcaption className="who"><span className="avatar" aria-hidden="true">S</span><div><b>Sarah R.</b><span>Driver · New Jersey</span></div></figcaption>
+            </figure>
           </div>
         </section>
       
