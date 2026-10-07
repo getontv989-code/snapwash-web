@@ -8,12 +8,14 @@
   /* ---------- Header: solid after scroll, hides on scroll down ---------- */
   var header = document.querySelector(".site-header");
   var lastY = window.scrollY;
+  // On phones the header stays put so the Get app button is always in reach
+  var compactHeader = window.matchMedia("(max-width: 900px)");
   function onScroll() {
     var y = window.scrollY;
     if (header) {
       header.classList.toggle("is-solid", y > 24);
       var goingDown = y > lastY && y > 400;
-      header.classList.toggle("is-hidden", goingDown && !doc.classList.contains("menu-open"));
+      header.classList.toggle("is-hidden", goingDown && !compactHeader.matches && !doc.classList.contains("menu-open"));
     }
     lastY = y;
   }
