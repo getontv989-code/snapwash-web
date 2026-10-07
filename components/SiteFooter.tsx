@@ -15,6 +15,7 @@ export default function SiteFooter() {
               <li><a href="/drive">Drive with us</a></li>
               <li><a href="/cleaners">For cleaners</a></li>
               <li><a href="/#pricing">Pricing</a></li>
+              <li><a href="/laundry">Locations</a></li>
             </ul>
           </nav>
           <nav className="f-col" aria-labelledby="f2">
