@@ -234,10 +234,16 @@ export default function HomePage() {
           </div>
         </section>
       
-        <section className="section quote-block" aria-label="Customer review" style={{ paddingTop: "0" } as CSSProperties}>
+        <section className="section quote-block" aria-label="Reviews" style={{ paddingTop: "0" } as CSSProperties}>
           <div className="wrap grid reveal">
-            <blockquote><p>“I haven't been to a laundromat in months. Snapwash picks up <mark>Monday</mark>, delivers <mark>Wednesday</mark>. It just works.”</p></blockquote>
-            <div className="who"><span className="avatar" aria-hidden="true">J</span><div><b>James M.</b><span>Customer · New York</span></div></div>
+            <figure className="quote">
+              <blockquote><p>“I haven't been to a laundromat in months. Snapwash picks up <mark>Monday</mark>, delivers <mark>Wednesday</mark>. It just works.”</p></blockquote>
+              <figcaption className="who"><span className="avatar" aria-hidden="true">J</span><div><b>James M.</b><span>Customer · New York</span></div></figcaption>
+            </figure>
+            <figure className="quote quote--2">
+              <blockquote><p>“Driving for Snapwash is the most <mark>flexible</mark> gig I've had. The app is smooth and payouts are always <mark>on time</mark>.”</p></blockquote>
+              <figcaption className="who"><span className="avatar" aria-hidden="true">S</span><div><b>Sarah R.</b><span>Driver · New Jersey</span></div></figcaption>
+            </figure>
           </div>
         </section>
       
