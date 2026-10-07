@@ -648,7 +648,6 @@ button { font: inherit; color: inherit; }
 .tour-rail .bar { display: block; height: 3px; border-radius: 3px; background: var(--line); overflow: hidden; }
 .tour-rail .bar i { display: block; height: 100%; background: var(--blue); transform-origin: left; transform: scaleX(0); }
 .tour-rail button[aria-selected="true"] .bar i { animation: tourBar var(--tour-ms, 3600ms) linear forwards; }
-.tour.is-paused .tour-rail button[aria-selected="true"] .bar i { animation-play-state: paused; }
 .tour-rail button.is-done .bar i { transform: scaleX(1); }
 @keyframes tourBar { to { transform: scaleX(1); } }
 .tour-note { position: absolute; right: 0; bottom: -28px; font: 500 var(--t-xs)/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
