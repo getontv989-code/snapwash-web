@@ -209,24 +209,22 @@
       { name: "Silk dress", color: "Black", hex: "#111111", shape: 3 },
       { name: "Linen shirt", color: "Sky blue", hex: "#9DBDFF", shape: 0 }
     ];
-    var idx = 0, busy = false;
+    // Runs on its own in a loop: scan each item, then clear the bag and start again
+    var idx = 0, scanMs = reduce ? 200 : 1400, gapMs = 1100, loopTimer = null;
+    var btnText = scanBtn.querySelector("span");
     function showShape(n) { shapes.forEach(function (s, i) { s.classList.toggle("is-off", i !== n); }); }
-    showShape(items[0].shape);
-    scanBtn.addEventListener("click", function () {
-      if (busy) return;
-      if (idx >= items.length) {
-        idx = 0; bag.innerHTML = '<li class="bag-empty">Your bag is empty. Scan an item to add it.</li>';
-        scanBtn.querySelector("span").textContent = "Scan an item";
-        showShape(items[0].shape); label.classList.remove("is-on");
-        return;
-      }
-      busy = true;
+    function reset() {
+      idx = 0; bag.innerHTML = '<li class="bag-empty">Your bag is empty.</li>';
+      showShape(items[0].shape); label.classList.remove("is-on");
+    }
+    function scanNext() {
+      if (idx >= items.length) { reset(); loopTimer = setTimeout(scanNext, gapMs); return; }
       var it = items[idx];
       showShape(it.shape);
       label.classList.remove("is-on");
       stage.classList.add("is-scanning");
-      scanBtn.setAttribute("aria-busy", "true");
-      setTimeout(function () {
+      btnText.textContent = "Scanning";
+      loopTimer = setTimeout(function () {
         stage.classList.remove("is-scanning");
         label.textContent = it.name + " · " + it.color;
         label.classList.add("is-on");
@@ -239,11 +237,15 @@
         li.children[2].textContent = it.color;
         bag.appendChild(li);
         idx++;
-        scanBtn.querySelector("span").textContent = idx >= items.length ? "Start over" : "Scan next item";
-        scanBtn.removeAttribute("aria-busy");
-        busy = false;
-      }, reduce ? 200 : 1400);
-    });
+        btnText.textContent = idx >= items.length ? "Bag ready · " + items.length + " items" : "Added to bag";
+        loopTimer = setTimeout(scanNext, idx >= items.length ? gapMs * 2.5 : gapMs);
+      }, scanMs);
+    }
+    function startScan() { if (!loopTimer) scanNext(); }
+    function stopScan() { clearTimeout(loopTimer); loopTimer = null; stage.classList.remove("is-scanning"); }
+    reset();
+    document.addEventListener("visibilitychange", function () { if (document.hidden) stopScan(); else startScan(); });
+    startScan();
   }
 
   /* ---------- Drive: route animation ---------- */
