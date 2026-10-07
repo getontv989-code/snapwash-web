@@ -1,0 +1,9 @@
+name,state,city,neighborhood,address,zip,phone,services,hours,lat,lng,description,sample
+Example Dry Cleaners,New York,Brooklyn,Williamsburg,100 Example St,11211,(718) 555-0101,Dry cleaning;Wash & fold;Alterations,Mo-Fr 07:00-19:00;Sa 08:00-17:00,40.7142,-73.9566,Sample listing used to preview the page layout.,yes
+Sample Wash & Fold,New York,Brooklyn,Williamsburg,200 Example St,11211,(718) 555-0102,Wash & fold;Comforters,Mo-Su 07:00-22:00,40.7121,-73.9601,Sample listing used to preview the page layout.,yes
+Placeholder Press,New York,Brooklyn,Park Slope,300 Example Ave,11215,(718) 555-0103,Dry cleaning;Shirt service,Mo-Sa 07:30-19:00,40.6710,-73.9814,Sample listing used to preview the page layout.,yes
+Demo Laundromat,New York,Manhattan,Upper West Side,400 Example Ave,10024,(212) 555-0104,Wash & fold;Self-service laundry,Mo-Su 06:00-23:00,40.7870,-73.9754,Sample listing used to preview the page layout.,yes
+Test Cleaners,New York,Manhattan,Upper West Side,500 Example Ave,10025,(212) 555-0105,Dry cleaning;Wedding gowns;Leather,Mo-Fr 07:00-20:00;Sa 09:00-18:00,40.7940,-73.9710,Sample listing used to preview the page layout.,yes
+Example Garment Care,New Jersey,Hoboken,Downtown Hoboken,600 Example St,07030,(201) 555-0106,Dry cleaning;Wash & fold,Mo-Sa 07:00-19:00,40.7380,-74.0310,Sample listing used to preview the page layout.,yes
+Sample Suds,New Jersey,Jersey City,Downtown Jersey City,700 Example St,07302,(201) 555-0107,Wash & fold;Self-service laundry,Mo-Su 07:00-22:00,40.7178,-74.0431,Sample listing used to preview the page layout.,yes
+Placeholder Cleaners,Connecticut,Stamford,Downtown Stamford,800 Example St,06901,(203) 555-0108,Dry cleaning;Alterations;Shirt service,Mo-Fr 07:00-19:00;Sa 08:00-16:00,41.0534,-73.5387,Sample listing used to preview the page layout.,yes

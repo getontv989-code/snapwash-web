@@ -15,8 +15,8 @@ const CTA: Record<Page, { href: string; label: string }> = {
   cleaners: { href: "#list", label: "List your shop" },
 };
 
-export default function SiteHeader({ current, night = false }: { current: Page; night?: boolean }) {
-  const cta = CTA[current];
+export default function SiteHeader({ current, night = false }: { current?: Page; night?: boolean }) {
+  const cta = CTA[current ?? "index"];
   return (
     <>
       <a className="skip" href="#main">Skip to content</a>
