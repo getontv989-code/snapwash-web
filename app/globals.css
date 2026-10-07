@@ -385,10 +385,6 @@ button { font: inherit; color: inherit; }
 .plan--unl .btn:hover { color: #FFFFFF; }
 .plan .ribbon { position: absolute; right: clamp(24px, 2.6vw, 36px); top: clamp(24px, 2.6vw, 36px); font: 500 var(--t-xs)/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; padding: 8px 12px; border-radius: 999px; background: rgba(255, 255, 255, .18); }
 @media (max-width: 560px) { .plan .ribbon { position: static; align-self: start; } }
-.plan--unl::after {
-  content: ""; position: absolute; right: -18%; bottom: -40%; width: 70%; aspect-ratio: 1; border-radius: 50%;
-  border: clamp(18px, 3vw, 36px) solid rgba(255, 255, 255, .12); pointer-events: none;
-}
 
 /* ---------- Quote ---------- */
 .quote-block .grid { row-gap: 24px; }
