@@ -21,24 +21,28 @@
   onScroll();
 
   /* ---------- Light / dark theme ---------- */
-  var themeBtn = document.querySelector(".theme-btn");
-  function syncThemeBtn() {
-    if (!themeBtn) return;
+  // Delegated so every toggle (header button, mobile menu row) keeps working even if the DOM is re-rendered
+  function syncTheme() {
     var dark = doc.getAttribute("data-theme") === "dark";
-    themeBtn.setAttribute("aria-pressed", String(dark));
-    themeBtn.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
-  }
-  syncThemeBtn();
-  if (themeBtn) {
-    themeBtn.addEventListener("click", function () {
-      var next = doc.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      doc.classList.add("theme-anim");
-      doc.setAttribute("data-theme", next);
-      try { localStorage.setItem("snapwash-theme", next); } catch (e) {}
-      syncThemeBtn();
-      setTimeout(function () { doc.classList.remove("theme-anim"); }, 450);
+    document.querySelectorAll("[data-theme-toggle]").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(dark));
+      if (b.classList.contains("theme-btn")) b.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
     });
   }
+  function setTheme(next) {
+    doc.classList.add("theme-anim");
+    doc.setAttribute("data-theme", next);
+    try { localStorage.setItem("snapwash-theme", next); } catch (e) {}
+    syncTheme();
+    setTimeout(function () { doc.classList.remove("theme-anim"); }, 450);
+  }
+  syncTheme();
+  document.addEventListener("click", function (e) {
+    var t = e.target && e.target.closest ? e.target.closest("[data-theme-toggle]") : null;
+    if (!t) return;
+    e.preventDefault();
+    setTheme(doc.getAttribute("data-theme") === "dark" ? "light" : "dark");
+  });
 
   /* ---------- Mobile menu ---------- */
   var menuBtn = document.querySelector(".menu-btn");
@@ -59,7 +63,7 @@
     menuBtn.addEventListener("click", function () { setMenu(!doc.classList.contains("menu-open")); });
     menu.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
     document.addEventListener("click", function (e) {
-      if (doc.classList.contains("menu-open") && !menu.contains(e.target) && !menuBtn.contains(e.target)) setMenu(false);
+      if (doc.classList.contains("menu-open") && !menu.contains(e.target) && !menuBtn.contains(e.target) && !(e.target.closest && e.target.closest("[data-theme-toggle]"))) setMenu(false);
     });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && doc.classList.contains("menu-open")) { setMenu(false); menuBtn.focus(); }

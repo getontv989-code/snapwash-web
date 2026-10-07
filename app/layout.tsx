@@ -9,9 +9,13 @@ const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"
 // Runs before first paint so a saved dark preference never flashes light
 const THEME_INIT = `try{if(localStorage.getItem("snapwash-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}`;
 
+// Busts browser caches of /main.js on every deploy so phones never run a stale copy
+const SCRIPT_VERSION = (process.env.VERCEL_GIT_COMMIT_SHA || "dev").slice(0, 8);
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://snapwash.io"),
   applicationName: "Snapwash",
+  formatDetection: { telephone: false, date: false, address: false, email: false },
   robots: { index: true, follow: true, "max-image-preview": "large" },
   openGraph: { type: "website", siteName: "Snapwash", locale: "en_US" },
   twitter: { card: "summary_large_image" },
@@ -32,7 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         {children}
-        <Script src="/main.js" strategy="afterInteractive" />
+        <Script src={`/main.js?v=${SCRIPT_VERSION}`} strategy="afterInteractive" />
       </body>
     </html>
   );

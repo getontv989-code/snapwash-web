@@ -122,6 +122,7 @@ button { font: inherit; color: inherit; }
   background: color-mix(in srgb, var(--ink) 6%, transparent); color: var(--ink);
   transition: background-color .3s var(--ease), transform .3s var(--ease);
 }
+.theme-btn, .menu-theme { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 .theme-btn:hover { background: color-mix(in srgb, var(--ink) 12%, transparent); }
 .theme-btn:active { transform: scale(.92); }
 .theme-btn svg { grid-area: 1 / 1; width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: transform .5s var(--ease), opacity .3s var(--ease); }
@@ -163,6 +164,15 @@ button { font: inherit; color: inherit; }
 .menu a:hover { background: var(--blue-wash); }
 .menu a small { display: none; }
 .menu a[aria-current="page"] { background: var(--blue); color: var(--on-blue); }
+.menu-theme {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  margin-top: 6px; padding: 14px 16px; border: 0; border-top: 1px solid var(--line); border-radius: 0 0 12px 12px;
+  background: none; color: var(--ink); cursor: pointer; font: 600 var(--t-lg)/1.2 var(--body); text-align: left;
+}
+.switch-ui { position: relative; width: 48px; height: 28px; border-radius: 999px; background: var(--line); transition: background-color .3s var(--ease); flex: none; }
+.switch-ui i { position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 1px 3px rgba(8, 18, 49, .3); transition: transform .3s var(--ease); }
+[data-theme="dark"] .switch-ui { background: var(--blue); }
+[data-theme="dark"] .switch-ui i { transform: translateX(20px); }
 @media (min-width: 901px) { .menu { display: none; } }
 
 /* ---------- Buttons ---------- */
