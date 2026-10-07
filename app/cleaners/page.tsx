@@ -131,13 +131,6 @@ export default function CleanersPage() {
         </section>
       
         <section className="section" aria-label="More from Snapwash" style={{ paddingTop: "0" } as CSSProperties}><div className="wrap"><div className="switch"><a href="/" className="reveal"><span className="kicker">For customers</span><h3>Get laundry picked up.</h3><span className="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a><a href="/drive" className="reveal"><span className="kicker">Drive with Snapwash</span><h3>Earn on your schedule.</h3><span className="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></div></div></section>
-      
-        <section className="closer" aria-labelledby="closer-title">
-          <div className="wrap grid">
-            <h2 id="closer-title">Your shop, on every phone nearby.</h2>
-            <div className="act"><p>Tell us about your shop and we'll get you set up on Snapwash.</p><a className="btn btn--white" href="/contact" data-magnetic>List your shop <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a></div>
-          </div>
-        </section>
       </main>
       <SiteFooter />
     </>

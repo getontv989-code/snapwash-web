@@ -1,5 +1,4 @@
 import Logo from "./Logo";
-import StoreButtons from "./StoreButtons";
 
 type Page = "index" | "drive" | "cleaners";
 
@@ -45,7 +44,6 @@ export default function SiteHeader({ current, night = false }: { current: Page; 
             ))}
           </ul>
         </nav>
-        <div className="hero-ctas"><StoreButtons primaryClass="btn--white" magnetic={false} /></div>
       </div>
     </>
   );

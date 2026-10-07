@@ -114,13 +114,6 @@ export default function DrivePage() {
         </section>
       
         <section className="section night" aria-label="More from Snapwash" style={{ paddingTop: "0" } as CSSProperties}><div className="wrap"><div className="switch"><a href="/" className="reveal"><span className="kicker">For customers</span><h3>Get laundry picked up.</h3><span className="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a><a href="/cleaners" className="reveal"><span className="kicker">For dry cleaners &amp; laundromats</span><h3>Grow your shop.</h3><span className="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></div></div></section>
-      
-        <section className="closer" aria-labelledby="closer-title">
-          <div className="wrap grid">
-            <h2 id="closer-title">Your car. Your hours. Our bags.</h2>
-            <div className="act"><p>Download the Snapwash driver app and sign up in a few minutes.</p><div className="hero-ctas"><a className="btn btn--white" href="https://apps.apple.com/us/search?term=snapwash" target="_blank" rel="noopener" data-magnetic><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.5 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.2 2.5-1.8 3.1-.5 7.7 1.3 10.2.8 1.2 1.8 2.6 3.1 2.6 1.3-.1 1.7-.8 3.3-.8 1.5 0 1.9.8 3.3.8 1.4 0 2.2-1.2 3-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.6-1-2.6-4.2zM14 5.2c.7-.8 1.2-2 1-3.2-1 .1-2.2.7-3 1.5-.6.7-1.2 1.9-1 3.1 1.1.1 2.3-.6 3-1.4z" /></svg><span className="two"><small>Download on the</small>App Store</span></a><a className="btn btn--line" href="https://play.google.com/store/search?q=snapwash&c=apps" target="_blank" rel="noopener" data-magnetic><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2c-.3.3-.4.7-.4 1.2v17.2c0 .5.1.9.4 1.2l9.6-9.8-9.6-9.8zm10.7 10.9 2.6 2.7-11.2 6.4 8.6-9.1zm0-2.2L5.7 1.8l11.2 6.4-2.6 2.7zm3.9-1.9 3.1 1.8c.9.5.9 1.9 0 2.4l-3.1 1.8-2.8-3 2.8-3z" /></svg><span className="two"><small>Get it on</small>Google Play</span></a></div></div>
-          </div>
-        </section>
       </main>
       <SiteFooter />
     </>

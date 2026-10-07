@@ -4,10 +4,14 @@ export default function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="wrap">
-        <div className="grid">
-          <div className="f-col">
-            <p>Laundry and dry cleaning pickup and delivery from the cleaners in your neighborhood. Serving New York, New Jersey and Connecticut.</p>
-          </div>
+        <div className="foot-top">
+          <a className="logo foot-logo" href="/" aria-label="Snapwash home">
+            <Logo />
+            <span className="sr-only">Snapwash</span>
+          </a>
+          <p>Laundry and dry cleaning pickup and delivery from the cleaners in your neighborhood. Serving New York, New Jersey and Connecticut.</p>
+        </div>
+        <div className="foot-links">
           <nav className="f-col" aria-labelledby="f1">
             <h2 id="f1">Snapwash</h2>
             <ul>
@@ -26,11 +30,14 @@ export default function SiteFooter() {
               <li><a href="/contact">Contact</a></li>
             </ul>
           </nav>
+          <nav className="f-col" aria-labelledby="f3">
+            <h2 id="f3">Get the app</h2>
+            <ul>
+              <li><a href="https://apps.apple.com/us/search?term=snapwash" target="_blank" rel="noopener">App Store</a></li>
+              <li><a href="https://play.google.com/store/search?q=snapwash&c=apps" target="_blank" rel="noopener">Google Play</a></li>
+            </ul>
+          </nav>
         </div>
-        <a className="logo foot-logo" href="/" aria-label="Snapwash home">
-          <Logo />
-          <span className="sr-only">Snapwash</span>
-        </a>
         <div className="legal">
           <span>© {new Date().getFullYear()} Snapwash. All rights reserved.</span>
           <span><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/cookies">Cookies</a></span>
