@@ -119,8 +119,8 @@ export default function HomePage() {
         </section>
       
         <div className="marquee" aria-hidden="true"><div className="marquee-track">
-          <span>Pickup tonight <i></i> <span className="o">Back Wednesday</span> <i></i> Dry cleaning <i></i> <span className="o">Laundromat</span> <i></i> New York <i></i> <span className="o">New Jersey</span> <i></i> Connecticut <i></i></span>
-          <span>Pickup tonight <i></i> <span className="o">Back Wednesday</span> <i></i> Dry cleaning <i></i> <span className="o">Laundromat</span> <i></i> New York <i></i> <span className="o">New Jersey</span> <i></i> Connecticut <i></i></span>
+          <span>Upper West Side <i></i> <span className="o">Williamsburg</span> <i></i> Astoria <i></i> <span className="o">Harlem</span> <i></i> Park Slope <i></i> <span className="o">Chelsea</span> <i></i> Long Island City <i></i> <span className="o">Tribeca</span> <i></i> Bushwick <i></i> <span className="o">Upper East Side</span> <i></i> Greenpoint <i></i> <span className="o">East Village</span> <i></i></span>
+          <span>Upper West Side <i></i> <span className="o">Williamsburg</span> <i></i> Astoria <i></i> <span className="o">Harlem</span> <i></i> Park Slope <i></i> <span className="o">Chelsea</span> <i></i> Long Island City <i></i> <span className="o">Tribeca</span> <i></i> Bushwick <i></i> <span className="o">Upper East Side</span> <i></i> Greenpoint <i></i> <span className="o">East Village</span> <i></i></span>
         </div></div>
       
         <section className="hsteps" id="how-it-works" aria-labelledby="steps-title">

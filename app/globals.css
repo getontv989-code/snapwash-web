@@ -142,22 +142,20 @@ button { font: inherit; color: inherit; }
 }
 
 .menu {
-  position: fixed; inset: 0; z-index: 35; background: var(--blue); color: var(--on-blue);
-  padding: calc(env(safe-area-inset-top, 0px) + 110px) var(--gutter) calc(env(safe-area-inset-bottom, 0px) + 32px);
-  display: flex; flex-direction: column; justify-content: space-between; gap: 32px;
-  clip-path: circle(0 at calc(100% - var(--gutter) - 24px) 38px);
-  transition: clip-path .7s var(--ease);
-  visibility: hidden;
+  position: fixed; z-index: 35; left: var(--gutter); right: var(--gutter);
+  top: calc(env(safe-area-inset-top, 0px) + 80px);
+  padding: 8px; border-radius: 20px; background: var(--surface); color: var(--ink);
+  box-shadow: 0 0 0 1px var(--line), 0 24px 48px -24px rgba(8, 18, 49, .35);
+  opacity: 0; transform: translateY(-8px); visibility: hidden; pointer-events: none;
+  transition: opacity .25s var(--ease), transform .25s var(--ease), visibility 0s linear .25s;
 }
-.menu-open .menu { clip-path: circle(150% at calc(100% - var(--gutter) - 24px) 38px); visibility: visible; }
-.menu-open .site-header { color: var(--on-blue); }
-.menu-open .site-header .logo-mark .glass { fill: var(--blue); }
-.menu-open .site-header .logo-mark .ring, .menu-open .site-header .logo-mark .water { fill: var(--on-blue); }
-.menu-open .menu-btn { background: var(--on-blue); color: var(--blue); }
-.menu ul { display: grid; gap: 4px; }
-.menu a { text-decoration: none; font: 700 clamp(2.75rem, 12vw, 4.5rem)/1.05 var(--display); letter-spacing: -.04em; display: inline-flex; gap: 14px; align-items: baseline; }
-.menu a small { font: 500 var(--t-xs)/1 var(--mono); letter-spacing: .1em; opacity: .7; }
-.menu a[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 8px; }
+.menu-open .menu { opacity: 1; transform: none; visibility: visible; pointer-events: auto; transition: opacity .25s var(--ease), transform .25s var(--ease); }
+.menu ul { display: grid; gap: 2px; }
+.menu a { display: block; padding: 14px 16px; border-radius: 12px; text-decoration: none; font: 600 var(--t-lg)/1.2 var(--body); transition: background-color .2s var(--ease), color .2s var(--ease); }
+.menu a:hover { background: var(--blue-wash); }
+.menu a small { display: none; }
+.menu a[aria-current="page"] { background: var(--blue); color: var(--on-blue); }
+@media (min-width: 901px) { .menu { display: none; } }
 
 /* ---------- Buttons ---------- */
 .btn {
@@ -622,7 +620,7 @@ button { font: inherit; color: inherit; }
 @keyframes hangerSwing { 0% { transform: rotate(0); } 18% { transform: rotate(-9deg); } 40% { transform: rotate(6deg); } 60% { transform: rotate(-3.5deg); } 80% { transform: rotate(1.5deg); } 100% { transform: rotate(0); } }
 @keyframes brandWord { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 .brand-word { transform-box: view-box; }
-.site-header.on-night:not(.is-solid) .logo, .menu-open .site-header .logo { color: #FFFFFF; }
+.site-header.on-night:not(.is-solid) .logo { color: #FFFFFF; }
 .site-footer .logo { color: #FFFFFF; }
 .foot-logo { display: inline-block; margin-top: clamp(56px, 7vw, 96px); margin-bottom: 32px; }
 .foot-logo .brand { height: clamp(88px, 10vw, 136px); }
