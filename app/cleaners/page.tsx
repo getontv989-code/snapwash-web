@@ -118,6 +118,10 @@ export default function CleanersPage() {
               <blockquote><p>“Since joining Snapwash, our order volume increased <mark>40%</mark>. The dashboard makes everything easy to manage.”</p></blockquote>
               <figcaption className="who"><span className="avatar" aria-hidden="true">D</span><div><b>David C.</b><span>Partner cleaner · Connecticut</span></div></figcaption>
             </figure>
+            <figure className="quote quote--2">
+              <blockquote><p>“I haven't been to a laundromat in months. Snapwash picks up <mark>Monday</mark>, delivers <mark>Wednesday</mark>. It just works.”</p></blockquote>
+              <figcaption className="who"><span className="avatar" aria-hidden="true">J</span><div><b>James M.</b><span>Customer · New York</span></div></figcaption>
+            </figure>
           </div>
         </section>
       
