@@ -114,8 +114,10 @@ export default function CleanersPage() {
       
         <section className="section quote-block" aria-label="Partner review">
           <div className="wrap grid reveal">
-            <blockquote><p>“Since joining Snapwash, our order volume increased <mark>40%</mark>. The dashboard makes everything easy to manage.”</p></blockquote>
-            <div className="who"><span className="avatar" aria-hidden="true">D</span><div><b>David C.</b><span>Partner cleaner · Connecticut</span></div></div>
+            <figure className="quote quote--solo">
+              <blockquote><p>“Since joining Snapwash, our order volume increased <mark>40%</mark>. The dashboard makes everything easy to manage.”</p></blockquote>
+              <figcaption className="who"><span className="avatar" aria-hidden="true">D</span><div><b>David C.</b><span>Partner cleaner · Connecticut</span></div></figcaption>
+            </figure>
           </div>
         </section>
       
