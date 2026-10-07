@@ -30,6 +30,10 @@ export default function SiteHeader({ current, night = false }: { current: Page; 
               <a key={p.key} href={p.href} aria-current={p.key === current ? "page" : undefined}>{p.label}</a>
             ))}
           </nav>
+          <button className="theme-btn" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+            <svg className="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z" /></svg>
+            <svg className="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" /><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" /></svg>
+          </button>
           <a className="btn header-cta" href={cta.href} data-magnetic="">{cta.label}</a>
           <button className="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><span></span></button>
         </div>

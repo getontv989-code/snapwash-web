@@ -6,6 +6,9 @@ import "./globals.css";
 const manrope = Manrope({ subsets: ["latin"], weight: ["500", "600", "700", "800"], variable: "--font-manrope", display: "swap" });
 const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-dm-sans", display: "swap" });
 
+// Runs before first paint so a saved dark preference never flashes light
+const THEME_INIT = `try{if(localStorage.getItem("snapwash-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}`;
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://snapwash.io"),
   applicationName: "Snapwash",
@@ -23,7 +26,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-US" className={`${manrope.variable} ${dmSans.variable}`}>
+    <html lang="en-US" data-theme="light" className={`${manrope.variable} ${dmSans.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
+      </head>
       <body>
         {children}
         <Script src="/main.js" strategy="afterInteractive" />

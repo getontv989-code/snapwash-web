@@ -20,6 +20,26 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
+  /* ---------- Light / dark theme ---------- */
+  var themeBtn = document.querySelector(".theme-btn");
+  function syncThemeBtn() {
+    if (!themeBtn) return;
+    var dark = doc.getAttribute("data-theme") === "dark";
+    themeBtn.setAttribute("aria-pressed", String(dark));
+    themeBtn.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+  }
+  syncThemeBtn();
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      var next = doc.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      doc.classList.add("theme-anim");
+      doc.setAttribute("data-theme", next);
+      try { localStorage.setItem("snapwash-theme", next); } catch (e) {}
+      syncThemeBtn();
+      setTimeout(function () { doc.classList.remove("theme-anim"); }, 450);
+    });
+  }
+
   /* ---------- Mobile menu ---------- */
   var menuBtn = document.querySelector(".menu-btn");
   var menu = document.getElementById("menu");
