@@ -101,6 +101,10 @@ export default function DrivePage() {
               <blockquote><p>“Driving for Snapwash is the most <mark>flexible gig</mark> I've had. The app is smooth and payouts are always on time.”</p></blockquote>
               <figcaption className="who"><span className="avatar" aria-hidden="true">S</span><div><b>Sarah R.</b><span>Driver · New Jersey</span></div></figcaption>
             </figure>
+            <figure className="quote quote--2">
+              <blockquote><p>“Since joining Snapwash, our order volume increased <mark>40%</mark>. The dashboard makes everything easy to manage.”</p></blockquote>
+              <figcaption className="who"><span className="avatar" aria-hidden="true">D</span><div><b>David C.</b><span>Partner cleaner · Connecticut</span></div></figcaption>
+            </figure>
           </div>
         </section>
       
