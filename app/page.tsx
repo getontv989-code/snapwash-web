@@ -138,7 +138,7 @@ export default function HomePage() {
             <div className="scan-copy reveal">
               <p className="kicker">AI scanning</p>
               <h2 id="scan-title">Point. Snap. It's itemized.</h2>
-              <p>No dropdowns, no counting shirts on the floor. Snapwash recognizes each garment and its color, builds your bag and prices the order before the driver arrives. Try it on the phone.</p>
+              <p>No dropdowns, no counting shirts on the floor. Snapwash recognizes each garment and its color, builds your bag and prices the order before the driver arrives.</p>
               <a className="arrow-link" href="#pricing">See what it costs <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a>
             </div>
             <div className="scan-stage reveal" style={{ "--rd": ".1s" } as CSSProperties}>
@@ -152,10 +152,10 @@ export default function HomePage() {
       <svg className="garment is-off" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" aria-hidden="true"><path d="M34 12h52l6 100H70L60 42 50 112H28z" /><path d="M34 22h52M44 22v10M76 22v10" /></svg>
       <svg className="garment is-off" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" aria-hidden="true"><path d="M46 10v18l-6 20 10 6-22 56h64L70 54l10-6-6-20V10" /><path d="M46 28h28M40 48h40" /></svg>
                     <span className="beam"></span>
-                    <span className="label" id="scan-label" aria-live="polite"></span>
+                    <span className="label" id="scan-label"></span>
                   </div>
-                  <ul className="bag" id="bag" aria-live="polite"><li className="bag-empty">Your bag is empty. Scan an item to add it.</li></ul>
-                  <button className="btn scan-btn" id="scan-btn" type="button"><span>Scan an item</span></button>
+                  <ul className="bag" id="bag"><li className="bag-empty">Your bag is empty.</li></ul>
+                  <div className="btn scan-btn" id="scan-btn" aria-hidden="true"><span>Scanning</span></div>
                   <p className="scan-note">Demo · items are examples</p>
                 </div>
               </div>
