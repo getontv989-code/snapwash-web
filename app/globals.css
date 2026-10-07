@@ -264,7 +264,9 @@ button { font: inherit; color: inherit; }
 .hsteps-head h2 { font-size: var(--t-2xl); line-height: 1; letter-spacing: -.035em; max-width: 16ch; }
 .hsteps-progress { flex: 1 1 200px; max-width: 360px; height: 3px; background: var(--line); border-radius: 3px; overflow: hidden; }
 .hsteps-progress span { display: block; height: 100%; width: 100%; background: var(--blue); transform-origin: left; transform: scaleX(var(--p, 0)); }
-.hsteps-track { display: flex; gap: clamp(16px, 2vw, 28px); padding-inline: var(--gutter); will-change: transform; }
+/* The track scrolls inside the page column, so cards never slide past the heading's left edge */
+.hsteps-viewport { overflow: hidden; padding-block: 8px; margin-block: -8px; }
+.hsteps-track { display: flex; gap: clamp(16px, 2vw, 28px); will-change: transform; }
 .hstep {
   flex: 0 0 clamp(260px, 24vw, 340px); min-height: clamp(280px, 40vh, 360px);
   border-radius: 24px; padding: clamp(22px, 2vw, 28px);
@@ -285,7 +287,7 @@ button { font: inherit; color: inherit; }
   .hsteps { height: auto !important; }
   .hstep:hover { transform: none; }
   .hsteps-pin { position: static; height: auto; padding-block: clamp(72px, 8vw, 128px); }
-  .hsteps-track { transform: none !important; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding-inline: var(--gutter); max-width: var(--max); margin-inline: auto; width: 100%; }
+  .hsteps-track { transform: none !important; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; }
   .hstep { min-height: 0; }
   .hstep .n { margin-top: 12px; }
   .hsteps-progress { display: none; }
