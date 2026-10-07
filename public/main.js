@@ -38,6 +38,9 @@
   if (menuBtn && menu) {
     menuBtn.addEventListener("click", function () { setMenu(!doc.classList.contains("menu-open")); });
     menu.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
+    document.addEventListener("click", function (e) {
+      if (doc.classList.contains("menu-open") && !menu.contains(e.target) && !menuBtn.contains(e.target)) setMenu(false);
+    });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && doc.classList.contains("menu-open")) { setMenu(false); menuBtn.focus(); }
     });
