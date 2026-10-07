@@ -130,14 +130,20 @@ button { font: inherit; color: inherit; }
 .theme-btn .i-sun { opacity: 0; transform: rotate(-90deg) scale(.5); }
 [data-theme="dark"] .theme-btn .i-sun { opacity: 1; transform: none; }
 [data-theme="dark"] .theme-btn .i-moon { opacity: 0; transform: rotate(90deg) scale(.5); }
-.menu-btn { display: none; }
+.menu-btn, .site-header .get-app { display: none; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 84px); }
 @media (max-width: 900px) {
   .pages, .site-header .header-cta { display: none; }
-  .theme-btn { margin-left: auto; width: 48px; height: 48px; }
+  .site-header .wrap { min-height: 60px; gap: 8px; }
+  .site-header.is-hidden { transform: none; }
+  .site-header .get-app { display: inline-flex; min-height: 40px; padding: 0 16px; font-size: var(--t-sm); flex: none; }
+  .theme-btn { margin-left: auto; width: 40px; height: 40px; }
+  .theme-btn svg { width: 18px; height: 18px; }
   .menu-btn {
     display: inline-grid; place-items: center;
-    width: 48px; height: 48px; border-radius: 50%; border: 0; cursor: pointer;
-    background: var(--blue); color: var(--on-blue);
+    width: 40px; height: 40px; border-radius: 50%; border: 0; cursor: pointer; flex: none;
+    background: color-mix(in srgb, var(--ink) 6%, transparent); color: var(--ink);
     transition: transform .3s var(--ease);
   }
   .menu-btn:active { transform: scale(.94); }
@@ -152,7 +158,7 @@ button { font: inherit; color: inherit; }
 
 .menu {
   position: fixed; z-index: 35; left: var(--gutter); right: var(--gutter);
-  top: calc(env(safe-area-inset-top, 0px) + 80px);
+  top: calc(env(safe-area-inset-top, 0px) + 68px);
   padding: 8px; border-radius: 20px; background: var(--surface); color: var(--ink);
   box-shadow: 0 0 0 1px var(--line), 0 24px 48px -24px rgba(8, 18, 49, .35);
   opacity: 0; transform: translateY(-8px); visibility: hidden; pointer-events: none;
@@ -634,7 +640,7 @@ button { font: inherit; color: inherit; }
 .site-footer .logo { color: #FFFFFF; }
 .foot-logo { display: inline-block; margin-top: clamp(56px, 7vw, 96px); margin-bottom: 32px; }
 .foot-logo .brand { height: clamp(88px, 10vw, 136px); }
-@media (max-width: 900px) { .brand { height: 44px; } }
+@media (max-width: 900px) { .brand { height: 34px; } }
 @media (prefers-reduced-motion: reduce) { .brand-hanger, .brand-word, .logo:hover .brand-hanger { animation: none; stroke-dashoffset: 0; } }
 
 /* ---------- Home hero: app tour ---------- */
