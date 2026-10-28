@@ -15,6 +15,11 @@ export type Shop = {
   website?: string;
   hours: { days: string; open: string }[];
   about: string[];
+  /** Price list shown on the shop page */
+  menu?: { service: string; price: string; turnaround: string }[];
+  highlights?: { title: string; body: string }[];
+  payments?: string[];
+  faq?: { q: string; a: string }[];
 };
 
 export type Area = {

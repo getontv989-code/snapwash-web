@@ -10,6 +10,7 @@ const ginos: Shop = {
   services: ["Dry cleaning", "Shirt care", "Alterations", "Wash & fold", "Household items"],
   address: { street: "214 West 79th Street", city: "New York", region: "NY", postalCode: "10024" },
   phone: "(212) 555-0148",
+  website: "https://www.ginosdrycleaning.com",
   hours: [
     { days: "Monday to Friday", open: "7:00 AM to 7:00 PM" },
     { days: "Saturday", open: "8:00 AM to 5:00 PM" },
@@ -18,6 +19,30 @@ const ginos: Shop = {
   about: [
     "Gino's has looked after Upper West Side wardrobes from the same counter for years: suits before interviews, dresses before weddings, and the weekly stack of work shirts in between.",
     "Shirts come back pressed and on hangers or folded, your choice. Suits and delicates are cleaned by hand where the label asks for it, and the tailor can take in a waist or shorten a hem while the garment is already in the shop.",
+    "Most regulars never visit the counter at all now. They scan the bag in the Snapwash app, a driver collects it from the lobby, and it comes back two days later, cleaned, pressed and bagged.",
+  ],
+  menu: [
+    { service: "Laundered shirt, on a hanger", price: "$4.50", turnaround: "Next day" },
+    { service: "Two-piece suit", price: "$22.00", turnaround: "2 days" },
+    { service: "Dress", price: "from $18.00", turnaround: "2 days" },
+    { service: "Trousers or skirt", price: "$10.00", turnaround: "2 days" },
+    { service: "Wash & fold", price: "$2.25 per lb", turnaround: "Next day" },
+    { service: "Comforter or duvet", price: "from $38.00", turnaround: "3 days" },
+    { service: "Hem, pants or skirt", price: "$16.00", turnaround: "3 days" },
+  ],
+  highlights: [
+    { title: "Tailor on site", body: "Hems, waists, sleeves and zippers handled in the same shop, so a garment can be cleaned and altered in one trip." },
+    { title: "Gentler cleaning", body: "Hydrocarbon dry cleaning instead of perc, and wet cleaning for wool and silk where the label allows." },
+    { title: "Shirts your way", body: "Light, medium or heavy starch, on a hanger or boxed and folded. Your preference is saved on every order." },
+    { title: "Snapwash pickup", body: "Book from the app and a driver collects from your door or lobby. No need to make it to the counter before 7." },
+  ],
+  payments: ["Apple Pay", "Google Pay", "Credit and debit cards"],
+  faq: [
+    { q: "Does Gino's Dry Cleaning offer pickup and delivery?", a: "Yes, through Snapwash. Book in the app, choose a pickup window and a driver collects your bag on the Upper West Side, takes it to Gino's and brings it back when it's ready." },
+    { q: "How long does dry cleaning take at Gino's?", a: "Shirts and wash and fold are usually ready the next day. Suits, dresses and trousers take about two days, and bulky items like comforters about three. The app shows the turnaround for your exact order before you book." },
+    { q: "Can Gino's alter clothes as well as clean them?", a: "Yes. There is a tailor on site for hems, waists, sleeves and zippers. Add a note to the item in the app and it will be altered while it is in the shop." },
+    { q: "Does Gino's clean wedding dresses and delicate fabrics?", a: "Silk, wool, cashmere and beaded or embellished pieces are cleaned by hand where the care label asks for it. For wedding gowns and anything of high value, call the shop first so they can look at the fabric." },
+    { q: "How do I pay?", a: "Orders booked through Snapwash are paid in the app with Apple Pay, Google Pay or a card. You see the full price before you confirm, and you're charged once." },
   ],
 };
 

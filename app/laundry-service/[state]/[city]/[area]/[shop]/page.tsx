@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
-import StoreButtons from "@/components/StoreButtons";
-import { SwitchCards } from "@/components/sections";
+import { Faq, SwitchCards } from "@/components/sections";
 import { JsonLd, LocationHero, breadcrumbLd } from "@/components/locations/blocks";
-import { CheckIcon, Kicker, Section, cx, grid12, wrap } from "@/components/ui";
+import { ArrowIcon, CheckIcon, Kicker, Section, SectionHead, btn, cx, grid12, wrap } from "@/components/ui";
 import { getAllPaths, getShop, paths } from "@/lib/locations";
 
 type Params = { state: string; city: string; area: string; shop: string };
@@ -50,6 +49,10 @@ export default async function ShopPage({ params }: { params: Promise<Params> }) 
   ];
   const addr = shop.address;
   const tel = shop.phone?.replace(/[^0-9+]/g, "");
+  const fullAddress = `${addr.street}, ${addr.city}, ${addr.region} ${addr.postalCode}`;
+  const mapQuery = encodeURIComponent(fullAddress);
+  const site = shop.website?.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
+  const faq = (shop.faq ?? []).map((f, i) => ({ id: `shfaq-${i + 1}`, ...f }));
 
   return (
     <>
@@ -60,11 +63,15 @@ export default async function ShopPage({ params }: { params: Promise<Params> }) 
           description: shop.summary,
           url: `https://snapwash.io${paths.shop(state, city, area, shop)}`,
           ...(shop.phone ? { telephone: shop.phone } : {}),
+          ...(shop.website ? { sameAs: [shop.website] } : {}),
+          ...(shop.payments ? { paymentAccepted: shop.payments.join(", ") } : {}),
+          hasMap: `https://www.google.com/maps/search/?api=1&query=${mapQuery}`,
           address: { "@type": "PostalAddress", streetAddress: addr.street, addressLocality: addr.city, addressRegion: addr.region, postalCode: addr.postalCode, addressCountry: "US" },
           areaServed: { "@type": "Place", name: `${area.name}, ${city.name}` },
           hasOfferCatalog: { "@type": "OfferCatalog", name: "Services", itemListElement: shop.services.map((s) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: s } })) },
         },
         breadcrumbLd(crumbs),
+        ...(faq.length ? [{ "@type": "FAQPage", mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }] : []),
       ]} />
       <SiteHeader />
       <main id="main">
@@ -96,15 +103,38 @@ export default async function ShopPage({ params }: { params: Promise<Params> }) 
                 {shop.website && (
                   <div className="grid gap-1">
                     <dt className={label}>Website</dt>
-                    <dd><a className="no-underline font-semibold hover:text-brand transition-colors break-all" href={shop.website} target="_blank" rel="noopener">{shop.website.replace(/^https?:\/\//, "")}</a></dd>
+                    <dd><a className="no-underline font-semibold hover:text-brand transition-colors break-all" href={shop.website} target="_blank" rel="noopener">{site}</a></dd>
                   </div>
                 )}
               </dl>
+              <a className="inline-flex items-center gap-2 pt-5 border-t border-t-line no-underline font-semibold text-sm text-brand hover:gap-3 transition-[gap] duration-300 ease-brand"
+                href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`} target="_blank" rel="noopener">Get directions <ArrowIcon className="w-4 h-4" /></a>
             </div>
           }
         >
-          <StoreButtons />
+          <a className={btn("primary")} href="/#download" data-magnetic>Book pickup in the app <ArrowIcon /></a>
+          {shop.website && <a className={btn("line")} href={shop.website} target="_blank" rel="noopener" data-magnetic>Visit website</a>}
+          {shop.phone && <a className={btn("line", "lg:hidden")} href={`tel:${tel}`}>Call the shop</a>}
         </LocationHero>
+
+        {/* Key facts at a glance */}
+        <section aria-label="At a glance" className="pb-[clamp(48px,6vw,88px)]">
+          <div className={wrap}>
+            <dl className="reveal grid grid-cols-4 border-y border-y-line max-lg:grid-cols-2">
+              {[
+                { k: "Services", v: `${shop.services.length} offered` },
+                { k: "Fastest turnaround", v: shop.menu?.some((m) => m.turnaround === "Next day") ? "Next day" : "2 days" },
+                { k: "Pickup & delivery", v: "With Snapwash" },
+                { k: "Weekday hours", v: shop.hours[0]?.open.replace(" to ", "–") ?? "See below" },
+              ].map((f, i) => (
+                <div key={f.k} className={cx("grid gap-2 py-6 pr-4", i > 0 && "lg:pl-6 lg:border-l lg:border-l-line", i % 2 === 1 && "max-lg:pl-4 max-lg:border-l max-lg:border-l-line", i > 1 && "max-lg:border-t max-lg:border-t-line")}>
+                  <dt className={label}>{f.k}</dt>
+                  <dd className="font-display font-bold text-lg leading-[1.2] tracking-tight">{f.v}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
 
         <Section className="pt-0" aria-labelledby="about-title">
           <div className={cx(wrap, grid12, "gap-y-10")}>
@@ -136,6 +166,90 @@ export default async function ShopPage({ params }: { params: Promise<Params> }) 
           </div>
         </Section>
 
+        {shop.menu && (
+          <Section className="pt-0" aria-labelledby="menu-title">
+            <div className={wrap}>
+              <SectionHead kicker="Prices" title="Services and prices." titleId="menu-title">
+                Typical prices at {shop.name}. The app prices your exact bag before you book, so the total is never a guess.
+              </SectionHead>
+              <table className="reveal w-full border-collapse text-left border-t-[1.5px] border-t-ink">
+                <caption className="sr-only">Services and prices at {shop.name}</caption>
+                <thead>
+                  <tr className="border-b border-b-line">
+                    <th scope="col" className={cx(label, "py-4 pr-4")}>Service</th>
+                    <th scope="col" className={cx(label, "py-4 pr-4 max-sm:hidden")}>Turnaround</th>
+                    <th scope="col" className={cx(label, "py-4 text-right")}>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {shop.menu.map((m) => (
+                    <tr key={m.service} className="border-b border-b-line">
+                      <th scope="row" className="py-5 pr-4 font-body font-semibold align-middle">
+                        {m.service}
+                        <span className="sm:hidden block mt-1 font-normal text-sm text-muted">{m.turnaround}</span>
+                      </th>
+                      <td className="py-5 pr-4 text-muted align-middle max-sm:hidden">{m.turnaround}</td>
+                      <td className="py-5 text-right font-display font-bold text-lg tracking-tight tabular-nums align-middle whitespace-nowrap">{m.price}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Section>
+        )}
+
+        {shop.highlights && (
+          <Section className="pt-0" aria-labelledby="why-title">
+            <div className={wrap}>
+              <SectionHead kicker={`Why ${shop.name.split(" ")[0]}`} title="What regulars come back for." titleId="why-title" />
+              <ul className="grid grid-cols-4 gap-tile max-xl:grid-cols-2 max-sm:grid-cols-1">
+                {shop.highlights.map((h, i) => (
+                  <li key={h.title} className="reveal grid gap-3 content-start p-card rounded-card bg-surface shadow-[0_0_0_1px_var(--line)]" style={{ ["--rd" as string]: `${i * 0.08}s` }}>
+                    <span className="w-10 h-10 rounded-[50%] grid place-items-center bg-wash text-brand"><CheckIcon className="w-5 h-5" /></span>
+                    <h3 className="text-lg leading-[1.2] tracking-tight">{h.title}</h3>
+                    <p className="text-muted text-sm">{h.body}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Section>
+        )}
+
+        <Section className="pt-0" aria-labelledby="where-title">
+          <div className={cx(wrap, grid12, "gap-y-8 items-stretch")}>
+            <div className="col-[1/span_4] grid gap-5 content-start max-lg:col-span-full">
+              <Kicker>Location</Kicker>
+              <h2 id="where-title" className="text-2xl leading-none tracking-display">Find the shop.</h2>
+              <address className="not-italic text-lg leading-[1.5]">{addr.street}<br />{addr.city}, {addr.region} {addr.postalCode}</address>
+              <p className="text-muted max-w-[40ch]">On the {area.name}, a short walk from Broadway. With Snapwash you never need to make the trip: a driver collects from your door.</p>
+              {shop.payments && (
+                <div className="grid gap-2">
+                  <p className={label}>Payment</p>
+                  <p>{shop.payments.join(" · ")}</p>
+                </div>
+              )}
+              <div className="flex flex-wrap gap-3">
+                <a className={btn("line")} href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`} target="_blank" rel="noopener">Get directions</a>
+                {shop.website && <a className={btn("line")} href={shop.website} target="_blank" rel="noopener">{site}</a>}
+              </div>
+            </div>
+            <div className="reveal relative col-[6/-1] min-h-[360px] rounded-card overflow-hidden shadow-[0_0_0_1px_var(--line)] bg-wash max-lg:col-span-full max-lg:min-h-[280px]">
+              {/* Shows until the map loads, or if a browser blocks the embed */}
+              <a className="absolute inset-0 grid place-items-center content-center gap-3 no-underline text-brand font-semibold" href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`} target="_blank" rel="noopener" tabIndex={-1} aria-hidden="true">
+                <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z" /><circle cx="12" cy="9.5" r="2.5" /></svg>
+                Open in Google Maps
+              </a>
+              <iframe
+                title={`Map showing ${shop.name}`}
+                src={`https://maps.google.com/maps?q=${mapQuery}&z=16&output=embed`}
+                className="relative w-full h-full min-h-[inherit] border-0 block"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </div>
+        </Section>
+
         <Section className="bg-brand text-white" aria-labelledby="check-title">
           <div className={cx(wrap, grid12, "gap-y-8")}>
             <div className="col-[1/span_5] grid gap-5 content-start max-lg:col-span-full">
@@ -155,6 +269,7 @@ export default async function ShopPage({ params }: { params: Promise<Params> }) 
         </Section>
 
         <div className="pt-section">
+          {faq.length > 0 && <Faq kicker={`${shop.name} FAQ`} title="Questions about this shop." items={faq} />}
           <SwitchCards items={[
             { href: paths.area(state, city, area), kicker: area.name, title: `Back to ${area.name} laundries.` },
             { href: "/cleaners", kicker: "Own a laundry?", title: "List your shop on Snapwash." },

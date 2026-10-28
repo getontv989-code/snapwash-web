@@ -50,7 +50,8 @@ export function LocationHero({ crumbs, kicker, title, accent, lede, children, as
         <div className="col-[1/span_7] row-1 self-end relative z-2 max-lg:col-span-full max-lg:row-auto">
           <Breadcrumbs items={crumbs} />
           <Kicker className="animate-fade-up [--d:.05s] mb-7">{kicker}</Kicker>
-          <h1 id="h1" className={cx(hero.h1, accent && "text-[clamp(2.25rem,1.2rem+3.4vw,4.5rem)]")}>
+          {/* Deeper word masks than the shared hero so descenders (y, p, g) are not clipped */}
+          <h1 id="h1" className={cx(hero.h1, "leading-[1.02] [&_.w]:pb-[.2em]! [&_.w]:-mb-[.2em]!", accent && "text-[clamp(2.25rem,1.2rem+3.4vw,4.5rem)]")}>
             {title}{accent && <> <em className={hero.em}>{accent}</em></>}
           </h1>
         </div>
