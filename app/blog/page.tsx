@@ -72,10 +72,13 @@ export default function BlogIndex() {
 
         <AppBand />
 
-        <SwitchCards items={[
-          { href: "/drive", kicker: "Drive with Snapwash", title: "Earn on your schedule." },
-          { href: "/cleaners", kicker: "For cleaners", title: "Grow your shop." },
-        ]} />
+        {/* SwitchCards has no top padding of its own; it normally follows a section that ends in padding */}
+        <div className="pt-section">
+          <SwitchCards items={[
+            { href: "/drive", kicker: "Drive with Snapwash", title: "Earn on your schedule." },
+            { href: "/cleaners", kicker: "For cleaners", title: "Grow your shop." },
+          ]} />
+        </div>
       </main>
       <SiteFooter />
     </>

@@ -10,9 +10,9 @@ export function Cover({ post, size = "md", className }: { post: Post; size?: "md
       size === "lg" ? "aspect-[16/7] max-md:aspect-[4/3]" : "aspect-[16/10]",
       className,
     )} aria-hidden="true">
-      <svg className="absolute -right-[6%] -bottom-[18%] w-[78%] h-auto -z-1 opacity-90" viewBox="0 0 200 140" fill="none" stroke="currentColor" strokeWidth="2.2">
-        <path className="stroke-round" d="M100 30c0-9 7-14 13-14s12 5 12 12c0 8-8 11-14 15l-11 8L12 112c-6 4-3 12 4 12h168c7 0 10-8 4-12L100 51" strokeOpacity=".9" />
-        <path className="stroke-round" d="M30 124v6M170 124v6" strokeOpacity=".35" />
+      <svg className={cx("absolute right-[8%] bottom-[14%] h-auto -z-1", size === "lg" ? "w-[42%] max-md:w-[62%]" : "w-[58%]")} viewBox="0 0 200 116" fill="none" stroke="currentColor" strokeWidth="3">
+        <path className="stroke-round" d="M86 20a14 14 0 1 1 21 12l-7 5v6" />
+        <path className="stroke-round" d="M100 43 18 94c-7 4-5 12 3 12h158c8 0 10-8 3-12Z" />
       </svg>
       <span className="absolute -left-[12%] -top-[30%] w-[60%] aspect-square rounded-[50%] bg-white/10 -z-1"></span>
       <span className={cx("absolute left-[7%] top-[11%] inline-flex items-center gap-[10px] font-body font-medium text-xs leading-[1.2] uppercase tracking-kicker",
