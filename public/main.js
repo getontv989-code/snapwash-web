@@ -213,10 +213,13 @@
     // Runs on its own in a loop: sweep the photo, box each garment, add it to the bag, then start again
     var idx = 0, total = 0, scanMs = reduce ? 200 : 1300, gapMs = 900, loopTimer = null;
     var btnText = scanBtn.querySelector("span");
+    // Row styles are Tailwind classes (app/globals.css scans this file)
+    var rowCls = "grid grid-cols-[38px_1fr_auto] gap-3 items-center py-2 border-t border-t-line text-sm animate-rise";
+    var emptyCls = "bag-empty block py-2 border-t border-t-line text-sm text-muted animate-rise";
     function money(n) { return "$" + n.toFixed(2); }
     function reset() {
       idx = 0; total = 0; totalEl.textContent = money(0);
-      bag.innerHTML = '<li class="bag-empty">Your bag is empty.</li>';
+      bag.innerHTML = '<li class="' + emptyCls + '">Your bag is empty.</li>';
       boxes.forEach(function (b) { b.classList.remove("is-found"); });
       stage.classList.remove("is-done");
     }
@@ -231,7 +234,8 @@
         var empty = bag.querySelector(".bag-empty");
         if (empty) empty.remove();
         var li = document.createElement("li");
-        li.innerHTML = '<img alt="" width="160" height="160"><span><b></b><small></small></span><span class="pr"></span>';
+        li.className = rowCls;
+        li.innerHTML = '<img class="w-[38px] h-[38px] rounded-[10px] object-cover bg-app-photo" alt="" width="160" height="160"><span><b class="block font-semibold"></b><small class="block text-[11px] text-muted"></small></span><span class="pr font-bold"></span>';
         li.querySelector("img").src = it.img;
         li.querySelector("b").textContent = it.name;
         li.querySelector("small").textContent = it.detail;
@@ -325,7 +329,8 @@
         var tr = document.createElement("tr");
         tr.className = "is-new";
         tr.setAttribute("data-state", "in");
-        tr.innerHTML = '<td></td><td></td><td></td><td><span class="pill pill--in">Incoming</span></td>';
+        // Same classes as the "Incoming" pill in components/cleaners/Dashboard.tsx
+        tr.innerHTML = '<td></td><td></td><td></td><td><span class="inline-flex items-center gap-1.5 py-[5px] px-[10px] rounded-pill normal-nums font-body font-medium text-[11px] leading-none tracking-pill uppercase before:w-1.5 before:h-1.5 before:rounded-[50%] before:bg-current bg-wash text-brand">Incoming</span></td>';
         tr.children[0].textContent = o[0]; tr.children[1].textContent = o[1]; tr.children[2].textContent = o[2];
         rows.insertBefore(tr, rows.firstChild);
         var current = document.querySelector('[data-filter][aria-selected="true"]');
