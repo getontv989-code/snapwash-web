@@ -20,6 +20,4 @@ export const PHOTOS = {
   van: { src: unsplash("1762095996527-126e49ef9d72"), alt: "A driver behind the wheel of a white delivery van giving a thumbs up", credit: "Polina Kuzovkova" },
   /* unsplash.com/photos/person-and-worker-in-dry-cleaner-KI43UjIInTA */
   counter: { src: unsplash("1788905761561-d47d8df41edf"), alt: "A customer and a worker at the counter of a neighborhood dry cleaner", credit: "Mlook 124" },
-  /* unsplash.com/photos/woman-working-in-a-dry-cleaning-establishment-with-garments-yIvKcomJM5o */
-  cleaner: { src: unsplash("1763495195143-f3d6650630f9"), alt: "A woman at work in a dry cleaning shop, surrounded by finished garments", credit: "Kevin Dowling" },
 } satisfies Record<string, Photo>;
