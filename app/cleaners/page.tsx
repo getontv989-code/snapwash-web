@@ -1,7 +1,10 @@
-import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import Dashboard from "@/components/cleaners/Dashboard";
+import { Faq, Mark, Quotes, SwitchCards } from "@/components/sections";
+import { ArrowIcon, Kicker, Section, SectionHead, btn, cx, grid12, tone, wrap } from "@/components/ui";
+import { hero } from "@/components/hero";
 
 const description = "Partner with Snapwash to get pickup and delivery orders without running a fleet. Orders arrive itemized by AI, drivers handle the miles, payments split automatically. NY, NJ, CT.";
 
@@ -15,128 +18,112 @@ export const metadata: Metadata = {
 
 const jsonLd = {"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://snapwash.io/#org", "name": "Snapwash", "url": "https://snapwash.io/", "logo": "https://snapwash.io/assets/snapwash-logo.svg", "slogan": "Fresh clothes, zero effort.", "areaServed": ["New York", "New Jersey", "Connecticut"]}, {"@type": "WebPage", "@id": "https://snapwash.io/cleaners#page", "url": "https://snapwash.io/cleaners", "name": "Snapwash for Dry Cleaners and Laundromats", "isPartOf": {"@id": "https://snapwash.io/#website"}, "description": "Partner with Snapwash to get new pickup and delivery orders, an order dashboard and automatic payments, with no delivery fleet of your own."}, {"@type": "Service", "name": "Snapwash retailer partnership", "serviceType": "Delivery and order management for dry cleaners and laundromats", "provider": {"@id": "https://snapwash.io/#org"}, "audience": {"@type": "BusinessAudience", "name": "Dry cleaners and laundromats"}, "areaServed": ["New York", "New Jersey", "Connecticut"]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://snapwash.io/"}, {"@type": "ListItem", "position": 2, "name": "Cleaners", "item": "https://snapwash.io/cleaners"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do Snapwash orders reach my shop?", "acceptedAnswer": {"@type": "Answer", "text": "Customers near you choose your shop in the Snapwash app and scan their items. The order arrives in your dashboard already itemized, and a Snapwash driver brings the bag to your counter."}}, {"@type": "Question", "name": "Do I need my own delivery drivers?", "acceptedAnswer": {"@type": "Answer", "text": "No. Snapwash drivers handle pickup from the customer and delivery back to them. You focus on cleaning."}}, {"@type": "Question", "name": "How do I manage orders?", "acceptedAnswer": {"@type": "Answer", "text": "Through the Snapwash retailer dashboard in your web browser. You see incoming orders, mark them as cleaning and ready, and chat with customers and drivers."}}, {"@type": "Question", "name": "How do I get paid?", "acceptedAnswer": {"@type": "Answer", "text": "The customer pays once when the order is placed. Snapwash splits that payment automatically between your shop, the driver and the platform, and sends your share to you."}}, {"@type": "Question", "name": "Where is Snapwash open to partners?", "acceptedAnswer": {"@type": "Answer", "text": "Snapwash works with dry cleaners and laundromats across New York, New Jersey and Connecticut."}}]}]};
 
+const FLOW = [
+  { title: "Customer picks your shop", body: "Nearby customers find you in the Snapwash app." },
+  { title: "AI itemizes the bag", body: "Every garment is scanned, named and priced before pickup." },
+  { title: "Driver brings it in", body: "A Snapwash driver collects the bag and delivers it to your counter." },
+  { title: "You clean it", body: "Mark it ready in the dashboard when it's done.", you: true },
+  { title: "Driver takes it home", body: "We deliver it back, with proof of delivery." },
+];
+
+const FAQ = [
+  { id: "sfaq-1", q: "How do Snapwash orders reach my shop?", a: "Customers near you choose your shop in the Snapwash app and scan their items. The order arrives in your dashboard already itemized, and a Snapwash driver brings the bag to your counter." },
+  { id: "sfaq-2", q: "Do I need my own delivery drivers?", a: "No. Snapwash drivers handle pickup from the customer and delivery back to them. You focus on cleaning." },
+  { id: "sfaq-3", q: "How do I manage orders?", a: "Through the Snapwash retailer dashboard in your web browser. You see incoming orders, mark them as cleaning and ready, and chat with customers and drivers." },
+  { id: "sfaq-4", q: "How do I get paid?", a: "The customer pays once when the order is placed. Snapwash splits that payment automatically between your shop, the driver and the platform, and sends your share to you." },
+  { id: "sfaq-5", q: "Where is Snapwash open to partners?", a: "Snapwash works with dry cleaners and laundromats across New York, New Jersey and Connecticut." },
+];
+
+const SHARES = [
+  { key: "Your shop", bar: "flex-[6] bg-white", dot: "bg-white" },
+  { key: "Driver", bar: "flex-[2.5] bg-white/55", dot: "bg-white/55" },
+  { key: "Snapwash", bar: "flex-[1.5] bg-white/28", dot: "bg-white/28" },
+];
+
 export default function CleanersPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <SiteHeader current="cleaners" />
       <main id="main">
-        <section className="hero shop-hero" aria-labelledby="h1">
-          <div className="wrap grid">
-            <div className="title">
-              <p className="kicker fade-up" style={{ "--d": ".05s", marginBottom: "28px" } as CSSProperties}>For dry cleaners &amp; laundromats</p>
-              <h1 id="h1" className="split">More orders. <em>No delivery van.</em></h1>
+        <section className={hero.section} aria-labelledby="h1">
+          <div className={cx(wrap, grid12, hero.grid)}>
+            <div className="col-[1/span_7] row-1 self-end max-lg:col-span-full max-lg:row-auto">
+              <Kicker className="animate-fade-up [--d:.05s] mb-7">For dry cleaners &amp; laundromats</Kicker>
+              <h1 id="h1" className={hero.h1}>More orders. <em className={hero.em}>No delivery van.</em></h1>
             </div>
-            <div className="stat fade-up" style={{ "--d": ".6s" } as CSSProperties}>
-              <p className="num"><span data-count="40" data-prefix="+" data-suffix="%">+40%</span></p>
-              <p className="cap">Order volume increase at a Connecticut partner after joining Snapwash</p>
+            <div className="col-[9/-1] row-[1/span_2] self-center grid gap-[14px] p-card-lg rounded-card bg-surface shadow-[0_0_0_1px_var(--line)] max-lg:col-span-full max-lg:row-auto animate-fade-up [--d:.6s]">
+              <p className="font-display font-extrabold text-[clamp(3.5rem,2.2rem+3.6vw,6rem)] leading-[.85] tracking-tightest text-brand tabular-nums"><span data-count="40" data-prefix="+" data-suffix="%">+40%</span></p>
+              <p className="font-body font-medium text-xs leading-[1.4] tracking-caps uppercase text-muted max-w-[36ch]">Order volume increase at a Connecticut partner after joining Snapwash</p>
             </div>
-            <div className="copy">
-              <p className="hero-lede fade-up" style={{ "--d": ".7s" } as CSSProperties}>Snapwash puts your shop in front of customers who'd rather not carry a bag across town. They scan, our drivers deliver, you clean. Everything runs from one dashboard.</p>
-              <div className="hero-ctas fade-up" id="list" style={{ "--d": ".85s" } as CSSProperties}><a className="btn" href="/contact" data-magnetic>List your shop <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a><a className="btn btn--line" href="#dashboard" data-magnetic>See the dashboard</a></div>
-            </div>
-          </div>
-        </section>
-      
-        <section className="section" id="dashboard" aria-labelledby="dash-title" style={{ paddingTop: "clamp(24px,4vw,56px)" } as CSSProperties}>
-          <div className="wrap">
-            <div className="section-head reveal">
-              <p className="kicker">The retailer dashboard</p>
-              <h2 id="dash-title">Your whole counter on one screen.</h2>
-              <p>Orders show up itemized by the AI scan, so nobody re-counts shirts at the counter. Move each one from incoming to ready with a click.</p>
-            </div>
-            <div className="dash reveal">
-              <div className="dash-bar">
-                <div className="tabs" role="tablist" aria-label="Filter orders">
-                  <button type="button" role="tab" data-filter="all" aria-selected="true">All</button>
-                  <button type="button" role="tab" data-filter="in" aria-selected="false">Incoming</button>
-                  <button type="button" role="tab" data-filter="clean" aria-selected="false">Cleaning</button>
-                  <button type="button" role="tab" data-filter="ready" aria-selected="false">Ready</button>
-                </div>
-                <span className="example">Example data</span>
-              </div>
-              <div className="dash-body">
-                <div className="orders">
-                  <table>
-                    <thead><tr><th scope="col">Order</th><th scope="col">Items</th><th scope="col">Arrived</th><th scope="col">Status</th></tr></thead>
-                    <tbody id="order-rows">
-                      <tr data-state="in"><td>#2418</td><td>3 items · suit, shirt</td><td>7:58 pm</td><td><span className="pill pill--in">Incoming</span></td></tr>
-                      <tr data-state="clean"><td>#2415</td><td>5 items · shirts</td><td>6:40 pm</td><td><span className="pill pill--clean">Cleaning</span></td></tr>
-                      <tr data-state="clean"><td>#2412</td><td>1 item · wool coat</td><td>5:15 pm</td><td><span className="pill pill--clean">Cleaning</span></td></tr>
-                      <tr data-state="ready"><td>#2409</td><td>9 items · wash &amp; fold</td><td>2:02 pm</td><td><span className="pill pill--ready">Ready</span></td></tr>
-                      <tr data-state="ready"><td>#2404</td><td>2 items · dress, blouse</td><td>11:30 am</td><td><span className="pill pill--ready">Ready</span></td></tr>
-                    </tbody>
-                  </table>
-                </div>
-                <aside className="dash-side" aria-label="Today at a glance">
-                  <div><p className="k">Orders today</p><p className="v" id="today-count">14</p></div>
-                  <div><p className="k">This week</p><div className="bars" aria-hidden="true"><span style={{ "--h": "38%", "--i": "0" } as CSSProperties}></span><span style={{ "--h": "52%", "--i": "1" } as CSSProperties}></span><span style={{ "--h": "45%", "--i": "2" } as CSSProperties}></span><span style={{ "--h": "60%", "--i": "3" } as CSSProperties}></span><span style={{ "--h": "58%", "--i": "4" } as CSSProperties}></span><span style={{ "--h": "74%", "--i": "5" } as CSSProperties}></span><span style={{ "--h": "92%", "--i": "6" } as CSSProperties}></span></div></div>
-                  <div><p className="k">Drivers en route</p><p className="v">3</p></div>
-                </aside>
+            <div className="col-[1/span_6] row-2 grid gap-6 content-start max-lg:col-span-full max-lg:row-auto">
+              <p className={cx(hero.lede, "animate-fade-up [--d:.7s]")}>Snapwash puts your shop in front of customers who'd rather not carry a bag across town. They scan, our drivers deliver, you clean. Everything runs from one dashboard.</p>
+              <div className={cx(hero.ctas, "animate-fade-up [--d:.85s]")} id="list">
+                <a className={btn("primary")} href="/contact" data-magnetic>List your shop <ArrowIcon /></a>
+                <a className={btn("line")} href="#dashboard" data-magnetic>See the dashboard</a>
               </div>
             </div>
           </div>
         </section>
-      
-        <section className="section" aria-labelledby="flow-title" style={{ paddingTop: "0" } as CSSProperties}>
-          <div className="wrap">
-            <div className="section-head reveal">
-              <p className="kicker">How an order moves</p>
-              <h2 id="flow-title">You do one step. We do four.</h2>
-            </div>
-            <ol className="flow reveal">
-              <li><h3>Customer picks your shop</h3><p>Nearby customers find you in the Snapwash app.</p></li>
-              <li><h3>AI itemizes the bag</h3><p>Every garment is scanned, named and priced before pickup.</p></li>
-              <li><h3>Driver brings it in</h3><p>A Snapwash driver collects the bag and delivers it to your counter.</p></li>
-              <li className="you"><h3>You clean it</h3><p>Mark it ready in the dashboard when it's done.</p></li>
-              <li><h3>Driver takes it home</h3><p>We deliver it back, with proof of delivery.</p></li>
+
+        <Section className="pt-[clamp(24px,4vw,56px)]" id="dashboard" aria-labelledby="dash-title">
+          <div className={wrap}>
+            <SectionHead kicker="The retailer dashboard" title="Your whole counter on one screen." titleId="dash-title">
+              Orders show up itemized by the AI scan, so nobody re-counts shirts at the counter. Move each one from incoming to ready with a click.
+            </SectionHead>
+            <Dashboard />
+          </div>
+        </Section>
+
+        <Section className="pt-0" aria-labelledby="flow-title">
+          <div className={wrap}>
+            <SectionHead kicker="How an order moves" title="You do one step. We do four." titleId="flow-title" />
+            <ol className="reveal grid grid-cols-5 gap-0 [counter-reset:f] border-t-[1.5px] border-t-ink max-xl:grid-cols-2 max-sm:grid-cols-1">
+              {FLOW.map((f) => (
+                <li key={f.title} className={cx(
+                  "pt-7 pr-5 pb-9 pl-0 grid gap-3 content-start border-b border-b-line relative",
+                  "before:[counter-increment:f] before:content-['0'_counter(f)] before:font-display before:font-extrabold before:text-[2.25rem] before:leading-none before:tracking-tightest before:text-brand",
+                  f.you && "after:content-['You'] after:absolute after:top-[34px] after:right-5 after:py-[5px] after:px-[10px] after:rounded-pill after:bg-ink after:text-paper after:font-body after:font-medium after:text-[10px] after:leading-none after:tracking-tag after:uppercase",
+                )}>
+                  <h3 className="text-lg leading-[1.15] tracking-tight">{f.title}</h3>
+                  <p className="text-muted text-sm max-w-[30ch]">{f.body}</p>
+                </li>
+              ))}
             </ol>
           </div>
-        </section>
-      
-        <section className="section blue-band" aria-labelledby="money-title">
-          <div className="wrap split-money">
-            <div className="explain reveal">
-              <p className="kicker">Payments</p>
-              <h2 id="money-title">One charge. Split for you.</h2>
-              <p>The customer pays once, by Apple Pay, Google Pay or card through Stripe, when they place the order. Snapwash divides it between your shop, the driver and the platform automatically. No invoices, no chasing.</p>
+        </Section>
+
+        <Section className={tone.blue} aria-labelledby="money-title">
+          <div className={cx(wrap, "grid grid-cols-12 gap-tile items-stretch")}>
+            <div className="reveal col-[1/span_5] grid gap-5 content-start max-lg:col-span-full">
+              <Kicker tone="onBlueCopy" className="max-w-[40ch]">Payments</Kicker>
+              <h2 id="money-title" className="text-2xl leading-none tracking-display">One charge. Split for you.</h2>
+              <p className="text-white/88 max-w-[40ch]">The customer pays once, by Apple Pay, Google Pay or card through Stripe, when they place the order. Snapwash divides it between your shop, the driver and the platform automatically. No invoices, no chasing.</p>
             </div>
-            <div className="viz reveal" style={{ "--rd": ".1s" } as CSSProperties}>
-              <div className="charge" role="img" aria-label="Diagram: one customer payment divided between the shop, the driver and Snapwash">
-                <div className="row"><span>Customer pays</span><span>Order #2418</span></div>
-                <div className="stack"><span className="s1"></span><span className="s2"></span><span className="s3"></span></div>
-                <div className="keys"><span><i style={{ background: "#FFFFFF" } as CSSProperties}></i>Your shop</span><span><i style={{ background: "rgba(255,255,255,.55)" } as CSSProperties}></i>Driver</span><span><i style={{ background: "rgba(255,255,255,.28)" } as CSSProperties}></i>Snapwash</span></div>
-                <p className="note">Shares shown for illustration only.</p>
+            <div className="reveal [--rd:.1s] col-[7/-1] grid gap-[14px] content-center max-lg:col-span-full">
+              <div className="rounded-card bg-white/12 p-[22px] grid gap-[14px]" role="img" aria-label="Diagram: one customer payment divided between the shop, the driver and Snapwash">
+                <div className="flex justify-between gap-3 font-body font-medium text-sm leading-[1.3] tracking-note"><span>Customer pays</span><span>Order #2418</span></div>
+                <div className="flex h-[18px] rounded-pill overflow-hidden gap-[3px]">{SHARES.map((s) => <span key={s.key} className={cx("block h-full", s.bar)}></span>)}</div>
+                <div className="flex flex-wrap gap-x-[18px] gap-y-2 font-body font-medium text-xs leading-[1.3] tracking-label uppercase">
+                  {SHARES.map((s) => <span key={s.key}><i className={cx("inline-block w-[10px] h-[10px] rounded-[3px] mr-1.5 align-[-1px]", s.dot)}></i>{s.key}</span>)}
+                </div>
+                <p className="text-xs opacity-75">Shares shown for illustration only.</p>
               </div>
             </div>
           </div>
-        </section>
-      
-        <section className="section quote-block" aria-label="Partner review">
-          <div className="wrap grid reveal">
-            <figure className="quote quote--solo">
-              <blockquote><p>“Since joining Snapwash, our order volume increased <mark>40%</mark>. The dashboard makes everything easy to manage.”</p></blockquote>
-              <figcaption className="who"><span className="avatar" aria-hidden="true">D</span><div><b>David C.</b><span>Partner cleaner · Connecticut</span></div></figcaption>
-            </figure>
-            <figure className="quote quote--2">
-              <blockquote><p>“I haven't been to a laundromat in months. Snapwash picks up <mark>Monday</mark>, delivers <mark>Wednesday</mark>. It just works.”</p></blockquote>
-              <figcaption className="who"><span className="avatar" aria-hidden="true">J</span><div><b>James M.</b><span>Customer · New York</span></div></figcaption>
-            </figure>
-          </div>
-        </section>
-      
-        <section className="section faq" aria-labelledby="faq-title" style={{ paddingTop: "0" } as CSSProperties}>
-          <div className="wrap grid">
-            <div className="faq-side"><p className="kicker" style={{ marginBottom: "18px" } as CSSProperties}>Partner FAQ</p><h2 id="faq-title">What shop owners ask first.</h2></div>
-            <div className="faq-list reveal"><details id="sfaq-1"><summary>How do Snapwash orders reach my shop?<span className="pm" aria-hidden="true"></span></summary><p className="a">Customers near you choose your shop in the Snapwash app and scan their items. The order arrives in your dashboard already itemized, and a Snapwash driver brings the bag to your counter.</p></details>
-      <details id="sfaq-2"><summary>Do I need my own delivery drivers?<span className="pm" aria-hidden="true"></span></summary><p className="a">No. Snapwash drivers handle pickup from the customer and delivery back to them. You focus on cleaning.</p></details>
-      <details id="sfaq-3"><summary>How do I manage orders?<span className="pm" aria-hidden="true"></span></summary><p className="a">Through the Snapwash retailer dashboard in your web browser. You see incoming orders, mark them as cleaning and ready, and chat with customers and drivers.</p></details>
-      <details id="sfaq-4"><summary>How do I get paid?<span className="pm" aria-hidden="true"></span></summary><p className="a">The customer pays once when the order is placed. Snapwash splits that payment automatically between your shop, the driver and the platform, and sends your share to you.</p></details>
-      <details id="sfaq-5"><summary>Where is Snapwash open to partners?<span className="pm" aria-hidden="true"></span></summary><p className="a">Snapwash works with dry cleaners and laundromats across New York, New Jersey and Connecticut.</p></details></div>
-          </div>
-        </section>
-      
-        <section className="section" aria-label="More from Snapwash" style={{ paddingTop: "0" } as CSSProperties}><div className="wrap"><div className="switch"><a href="/" className="reveal"><span className="kicker">For customers</span><h3>Get laundry picked up.</h3><span className="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a><a href="/drive" className="reveal"><span className="kicker">Drive with Snapwash</span><h3>Earn on your schedule.</h3><span className="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span></a></div></div></section>
+        </Section>
+
+        <Quotes label="Partner review" solo items={[
+          { text: <>“Since joining Snapwash, our order volume increased <Mark>40%</Mark>. The dashboard makes everything easy to manage.”</>, initial: "D", name: "David C.", role: "Partner cleaner · Connecticut" },
+          { text: <>“I haven't been to a laundromat in months. Snapwash picks up <Mark>Monday</Mark>, delivers <Mark>Wednesday</Mark>. It just works.”</>, initial: "J", name: "James M.", role: "Customer · New York" },
+        ]} />
+
+        <Faq kicker="Partner FAQ" title="What shop owners ask first." items={FAQ} />
+
+        <SwitchCards items={[
+          { href: "/", kicker: "For customers", title: "Get laundry picked up." },
+          { href: "/drive", kicker: "Drive with Snapwash", title: "Earn on your schedule." },
+        ]} />
       </main>
       <SiteFooter />
     </>
