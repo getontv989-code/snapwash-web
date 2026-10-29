@@ -1,23 +1,19 @@
-/* Photos served from Unsplash's CDN (Unsplash License: free for commercial use, no attribution required).
-   Swap a URL here to change the image everywhere it's used. */
+/* People photography, self-hosted in public/people. Stills come from licensed Pexels footage (free for
+   commercial use), reframed and graded to the Snapwash palette. Each photo ships at two widths. */
 
-type Photo = { src: string; alt: string; credit: string };
+type Photo = { name: string; widths: [number, number]; alt: string };
 
-const unsplash = (id: string) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&q=75`;
-
-/** Builds src/srcSet for an Unsplash photo at the given widths. */
-export function photoSet(p: Photo, widths = [480, 800, 1200, 1600]) {
-  return {
-    src: `${p.src}&w=${widths[1]}`,
-    srcSet: widths.map((w) => `${p.src}&w=${w} ${w}w`).join(", "),
-  };
+/** Builds src/srcSet for a photo in public/people. */
+export function photoSet(p: Photo) {
+  const url = (w: number) => `/people/${p.name}-${w}.webp`;
+  return { src: url(p.widths[0]), srcSet: p.widths.map((w) => `${url(w)} ${w}w`).join(", ") };
 }
 
 export const PHOTOS = {
-  /* unsplash.com/photos/couple-signing-for-a-package-delivery-at-the-door-Kd27X69pYyo */
-  door: { src: unsplash("1758523670564-d1d6a734dc0b"), alt: "A couple at their front door signing for an order from a delivery driver", credit: "Vitaly Gariev" },
-  /* Unsplash: "Man driving a white van gives a thumbs up" */
-  van: { src: unsplash("1762095996527-126e49ef9d72"), alt: "A driver behind the wheel of a white delivery van giving a thumbs up", credit: "Polina Kuzovkova" },
-  /* unsplash.com/photos/person-and-worker-in-dry-cleaner-KI43UjIInTA */
-  counter: { src: unsplash("1788905761561-d47d8df41edf"), alt: "A customer and a worker at the counter of a neighborhood dry cleaner", credit: "Mlook 124" },
+  door: { name: "door", widths: [800, 1600], alt: "A Snapwash driver in a blue cap handing an order to a customer at her front door" },
+  van: { name: "van", widths: [600, 1080], alt: "A driver loading orders into his van outside a customer's home" },
+  shop: { name: "shop", widths: [800, 1600], alt: "Two cleaners sorting freshly washed linens beside an industrial washer" },
 } satisfies Record<string, Photo>;
+
+/** Small round portraits used as human touches around the page. */
+export const AVATARS = { driver: "/people/driver.webp", cleaner: "/people/cleaner.webp" };
