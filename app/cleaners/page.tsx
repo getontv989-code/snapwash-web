@@ -60,7 +60,7 @@ export default function CleanersPage() {
             <div className="col-[1/span_6] row-2 grid gap-6 content-start max-lg:col-span-full max-lg:row-auto">
               <p className={cx(hero.lede, "animate-fade-up [--d:.7s]")}>Snapwash puts your shop in front of customers who'd rather not carry a bag across town. They scan, our drivers deliver, you clean. Everything runs from one dashboard.</p>
               <div className={cx(hero.ctas, "animate-fade-up [--d:.85s]")} id="list">
-                <a className={btn("primary")} href="/contact" data-magnetic>List your shop <ArrowIcon /></a>
+                <a className={btn("primary")} href="https://retailer.snapwash.io/sign-up" data-magnetic>List your shop <ArrowIcon /></a>
                 <a className={btn("line")} href="#dashboard" data-magnetic>See the dashboard</a>
               </div>
             </div>
