@@ -8,6 +8,7 @@ import { Faq, Mark, Quotes, SwitchCards } from "@/components/sections";
 import { Kicker, Section, SectionHead, cx, grid12, tone, wrap } from "@/components/ui";
 import { hero } from "@/components/hero";
 import { PHOTOS, photoSet } from "@/components/home/photos";
+import ApplyForm from "@/components/ApplyForm";
 
 const description = "Drive for Snapwash in New York, New Jersey and Connecticut. Pick up and deliver laundry and dry cleaning on your own hours, with in-app navigation and on-time payouts.";
 
@@ -50,7 +51,7 @@ export default function DrivePage() {
             </div>
             <div className={hero.copy}>
               <p className={cx(hero.lede, "animate-fade-up [--d:.55s]")}>Collect bags from customers, drop them at local cleaners, bring them home fresh. You pick the hours. The app handles the route.</p>
-              <div className={cx(hero.ctas, "animate-fade-up [--d:.7s]")} id="apply"><StoreButtons /></div>
+              <div className={cx(hero.ctas, "animate-fade-up [--d:.7s]")}><StoreButtons /></div>
               <Kicker className="animate-fade-up [--d:.85s]">Sign up in the driver app</Kicker>
             </div>
             <div className="col-[7/-1] row-[1/span_2] self-center max-lg:col-span-full max-lg:row-auto max-lg:mt-3 animate-fade-up [--d:.4s]">
@@ -89,6 +90,12 @@ export default function DrivePage() {
         <Quotes label="Driver review" solo className={cx("pt-0", tone.night)} items={[
           { text: <>“Driving for Snapwash is the most <Mark>flexible gig</Mark> I've had. The app is smooth and payouts are always on time.”</>, initial: "S", name: "Sarah R.", role: "Driver · New Jersey" },
           { text: <>“Since joining Snapwash, our order volume increased <Mark>40%</Mark>. The dashboard makes everything easy to manage.”</>, initial: "D", name: "David C.", role: "Partner cleaner · Connecticut" },
+        ]} />
+
+        <ApplyForm kicker="Drive with Snapwash" title="Apply to drive with Snapwash." intro="We review every application and reply within 48 hours." fields={[
+          { name: "name", label: "Full name", autoComplete: "name" },
+          { name: "email", label: "Email address", type: "email", autoComplete: "email" },
+          { name: "area", label: "Area you drive in", autoComplete: "address-level2" },
         ]} />
 
         <Faq night kicker="Driver FAQ" title="Before your first run." items={FAQ} />

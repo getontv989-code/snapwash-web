@@ -5,6 +5,7 @@ import Dashboard from "@/components/cleaners/Dashboard";
 import { Faq, Mark, Quotes, SwitchCards } from "@/components/sections";
 import { ArrowIcon, Kicker, Section, SectionHead, btn, cx, grid12, tone, wrap } from "@/components/ui";
 import { hero } from "@/components/hero";
+import ApplyForm from "@/components/ApplyForm";
 import { PHOTOS, photoSet } from "@/components/home/photos";
 
 const description = "Partner with Snapwash to get pickup and delivery orders without running a fleet. Orders arrive itemized by AI, drivers handle the miles, payments split automatically. NY, NJ, CT.";
@@ -60,7 +61,7 @@ export default function CleanersPage() {
             <div className="col-[1/span_6] row-2 grid gap-6 content-start max-lg:col-span-full max-lg:row-auto">
               <p className={cx(hero.lede, "animate-fade-up [--d:.7s]")}>Snapwash puts your shop in front of customers who'd rather not carry a bag across town. They scan, our drivers deliver, you clean. Everything runs from one dashboard.</p>
               <div className={cx(hero.ctas, "animate-fade-up [--d:.85s]")} id="list">
-                <a className={btn("primary")} href="https://retailer.snapwash.io/sign-up" data-magnetic>List your shop <ArrowIcon /></a>
+                <a className={btn("primary")} href="#apply" data-magnetic>List your shop <ArrowIcon /></a>
                 <a className={btn("line")} href="#dashboard" data-magnetic>See the dashboard</a>
               </div>
             </div>
@@ -130,6 +131,12 @@ export default function CleanersPage() {
         <Quotes label="Partner review" solo items={[
           { text: <>“Since joining Snapwash, our order volume increased <Mark>40%</Mark>. The dashboard makes everything easy to manage.”</>, initial: "D", name: "David C.", role: "Partner cleaner · Connecticut" },
           { text: <>“I haven't been to a laundromat in months. Snapwash picks up <Mark>Monday</Mark>, delivers <Mark>Wednesday</Mark>. It just works.”</>, initial: "J", name: "James M.", role: "Customer · New York" },
+        ]} />
+
+        <ApplyForm kicker="Become a partner" title="Add your shop to Snapwash." intro="Listing is free, and the partner team replies within two business days." fields={[
+          { name: "name", label: "Full name", autoComplete: "name" },
+          { name: "email", label: "Email address", type: "email", autoComplete: "email" },
+          { name: "business", label: "Business name", autoComplete: "organization" },
         ]} />
 
         <Faq kicker="Partner FAQ" title="What shop owners ask first." items={FAQ} />
