@@ -79,7 +79,9 @@ export function DirectoryTable({ caption, columns, rows, pageSize = 10, searchab
         </thead>
         <tbody>
           {visible.map((r) => (
-            <tr key={r.id} className={cx("relative border-b border-b-line transition-[background-color] duration-300 ease-brand", r.href && "group/row hover:bg-wash")}>
+            /* The whole row opens the page: <tr> can't anchor a stretched link in every browser, so it gets a click handler too */
+            <tr key={r.id} onClick={r.href ? (e) => { if (!(e.target as HTMLElement).closest("a")) window.location.assign(r.href!); } : undefined}
+              className={cx("relative border-b border-b-line transition-[background-color] duration-300 ease-brand", r.href && "group/row cursor-pointer hover:bg-wash")}>
               <th scope="row" className="py-5 pr-4 align-middle font-display font-bold text-lg leading-[1.25] tracking-tight">
                 {r.href ? (
                   <a href={r.href} className="no-underline after:absolute after:inset-0 group-hover/row:text-brand transition-colors duration-300">{r.name}</a>
@@ -96,14 +98,15 @@ export function DirectoryTable({ caption, columns, rows, pageSize = 10, searchab
               ))}
               <td className="py-5 align-middle text-right w-px whitespace-nowrap">
                 {r.href ? (
-                  <>
+                  /* Duplicate of the name link for pointer users, so it stays out of the tab order */
+                  <a href={r.href} tabIndex={-1} aria-hidden="true" className="relative z-1 no-underline">
                     <span className={cx(pill, "gap-2 bg-brand text-on-brand max-md:hidden")}>
                       View <ArrowIcon className="w-3.5 h-3.5 transition-transform duration-300 ease-brand group-hover/row:translate-x-0.5" />
                     </span>
-                    <span className="md:hidden inline-grid place-items-center w-10 h-10 rounded-[50%] bg-brand text-on-brand align-middle" aria-hidden="true">
+                    <span className="md:hidden inline-grid place-items-center w-10 h-10 rounded-[50%] bg-brand text-on-brand align-middle">
                       <ArrowIcon className="w-[18px] h-[18px]" />
                     </span>
-                  </>
+                  </a>
                 ) : (
                   <span className={cx(pill, "bg-ink/6 text-muted max-md:hidden")}>{r.status ?? "Coming soon"}</span>
                 )}
