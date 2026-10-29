@@ -1,4 +1,5 @@
 import Logo from "./Logo";
+import { RETAILER_LOGIN_URL } from "./SiteHeader";
 import { cx, wrap } from "./ui";
 
 const COLUMNS: { id: string; title: string; links: { href: string; label: string; external?: boolean }[] }[] = [
@@ -6,6 +7,8 @@ const COLUMNS: { id: string; title: string; links: { href: string; label: string
     { href: "/", label: "For customers" },
     { href: "/drive", label: "Drive with us" },
     { href: "/cleaners", label: "For cleaners" },
+    { href: RETAILER_LOGIN_URL, label: "Retailer login" },
+    { href: "/laundry-service", label: "Locations" },
     { href: "/#pricing", label: "Pricing" },
   ] },
   { id: "f2", title: "Company", links: [
