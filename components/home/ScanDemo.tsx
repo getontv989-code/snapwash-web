@@ -21,7 +21,10 @@ export default function ScanDemo() {
               <div className="viewfinder relative aspect-[763/616] rounded-[22px] bg-navy overflow-hidden">
                 <img className="block w-full h-full object-cover" src="/app/scan-photo.webp" alt="A red dress, patterned pants and a black polo laid out on a table" width="763" height="616" loading="lazy" />
                 {[0, 1, 2].map((i) => <GarmentBox key={i} i={i} className="vf-box [&.is-found]:animate-box-in" />)}
-                <span className="absolute inset-x-0 h-[3px] bg-white shadow-[0_0_22px_6px_rgba(0,96,246,.75)] top-[4%] opacity-0 group-[.is-scanning]/scan:opacity-100 group-[.is-scanning]/scan:animate-[beam_1.3s_var(--ease-in-out)_both]"></span>
+                {/* The beam rides a 4%–94% track and moves by transform, so the sweep never triggers layout */}
+                <span className="absolute inset-x-0 top-[4%] h-[90%] pointer-events-none opacity-0 group-[.is-scanning]/scan:opacity-100 group-[.is-scanning]/scan:animate-[beam_1.3s_var(--ease-in-out)_both]">
+                  <span className="absolute inset-x-0 top-0 h-[3px] bg-white shadow-[0_0_22px_6px_rgba(0,96,246,.75)]"></span>
+                </span>
               </div>
               <p className="flex justify-between items-baseline font-body font-semibold text-sm leading-none" id="bag-total"><span>Your bag</span><b className="font-display font-extrabold text-lg leading-none text-brand">$0.00</b></p>
               <ul className="grid gap-0 content-start min-h-[168px]" id="bag"><li className="bag-empty block py-2 border-t border-t-line text-sm text-muted animate-rise">Your bag is empty.</li></ul>
