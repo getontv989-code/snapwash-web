@@ -1,18 +1,23 @@
 import Logo from "./Logo";
 import { btn, cx, wrap } from "./ui";
 
-type Page = "index" | "drive" | "cleaners";
+export const RETAILER_LOGIN_URL = "https://retailer.snapwash.io/sign-in?redirectUrl=/";
 
-const PAGES: { key: Page; href: string; label: string }[] = [
+type Page = "index" | "drive" | "cleaners" | "locations";
+
+const PAGES: { key: Page | "retailer"; href: string; label: string; external?: boolean }[] = [
   { key: "index", href: "/", label: "For you" },
   { key: "drive", href: "/drive", label: "Drive" },
   { key: "cleaners", href: "/cleaners", label: "Cleaners" },
+  { key: "locations", href: "/laundry-service", label: "Locations" },
+  { key: "retailer", href: RETAILER_LOGIN_URL, label: "Retailer login", external: true },
 ];
 
 const CTA: Record<Page, { href: string; label: string }> = {
   index: { href: "#download", label: "Get the app" },
   drive: { href: "#apply", label: "Start driving" },
   cleaners: { href: "#apply", label: "List your shop" },
+  locations: { href: "/#download", label: "Get the app" },
 };
 
 /* .site-header, .menu-btn, .theme-btn and #menu are hooks for public/main.js (scroll, menu, theme) */
@@ -20,8 +25,9 @@ const roundBtn = "py-px px-1.5 rounded-[50%] border-0 cursor-pointer bg-ink/6 te
 const themeIcon = "[grid-area:1/1] w-5 h-5 max-lg:w-[18px] max-lg:h-[18px] [transition:transform_.5s_var(--ease),rotate_.5s_var(--ease),scale_.5s_var(--ease),opacity_.3s_var(--ease)]";
 const burgerBar = "before:absolute before:left-0 before:w-[18px] before:h-0.5 before:bg-current before:transition-transform before:duration-400 before:ease-brand after:absolute after:left-0 after:w-[18px] after:h-0.5 after:bg-current after:transition-transform after:duration-400 after:ease-brand";
 
-export default function SiteHeader({ current }: { current: Page }) {
-  const cta = CTA[current];
+/** current is omitted on pages outside the three main ones (e.g. the location directory) */
+export default function SiteHeader({ current }: { current?: Page }) {
+  const cta = current ? CTA[current] : { href: "/#download", label: "Get the app" };
   return (
     <>
       <a className="fixed left-gutter top-[-80px] z-100 py-[10px] px-4 rounded-pill bg-brand text-on-brand font-semibold no-underline transition-[top] duration-300 ease-brand focus:top-[calc(env(safe-area-inset-top,0px)+12px)]" href="#main">Skip to content</a>
@@ -38,7 +44,7 @@ export default function SiteHeader({ current }: { current: Page }) {
           </a>
           <nav className="ml-auto flex gap-1 p-1 rounded-pill bg-ink/6 max-lg:hidden" aria-label="Pages">
             {PAGES.map((p) => (
-              <a key={p.key} href={p.href} aria-current={p.key === current ? "page" : undefined}
+              <a key={p.key} href={p.href} aria-current={p.key === current ? "page" : undefined} {...(p.external ? { rel: "noopener" } : {})}
                 className="relative py-[9px] px-4 rounded-pill no-underline font-medium text-sm transition-[background-color,color] duration-300 ease-brand hover:bg-ink/8 aria-[current=page]:bg-brand aria-[current=page]:text-on-brand">{p.label}</a>
             ))}
           </nav>
@@ -66,7 +72,7 @@ export default function SiteHeader({ current }: { current: Page }) {
           <ul className="grid gap-0.5">
             {PAGES.map((p, i) => (
               <li key={p.key}>
-                <a href={p.href} aria-current={p.key === current ? "page" : undefined}
+                <a href={p.href} aria-current={p.key === current ? "page" : undefined} {...(p.external ? { rel: "noopener" } : {})}
                   className="block py-[14px] px-4 rounded-[12px] no-underline font-body font-semibold text-lg leading-[1.2] transition-[background-color,color] duration-200 ease-brand hover:bg-wash aria-[current=page]:bg-brand aria-[current=page]:text-on-brand"><small className="hidden">0{i + 1}</small>{p.label}</a>
               </li>
             ))}
