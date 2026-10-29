@@ -1,4 +1,5 @@
 import { Section, SectionHead, cx, wrap } from "../ui";
+import { AVATARS, PHOTOS, photoSet } from "./photos";
 
 const cell = "reveal relative rounded-card p-card flex flex-col gap-[10px] min-w-0 overflow-hidden transition-[transform,translate,box-shadow] duration-500 ease-brand hover:-translate-y-1 hover:shadow-[0_0_0_1.5px_var(--blue)] max-lg:col-span-full";
 const plain = "bg-surface shadow-[0_0_0_1px_var(--line)]";
@@ -30,7 +31,10 @@ export default function Features() {
             <h3 className={h3}>Live chat</h3>
             <p className={cx(body, "text-muted")}>Message your driver or your cleaner without leaving the order.</p>
             <div className="mt-auto grid gap-2" aria-hidden="true">
-              <p className="m-0 py-[10px] px-[14px] rounded-[18px] text-sm max-w-[85%] bg-wash text-ink rounded-bl-[6px]">Downstairs in 2. Buzzer 4B?</p>
+              <div className="flex items-end gap-2 max-w-[85%]">
+                <img src={AVATARS.driver} alt="" width="32" height="32" loading="lazy" className="w-8 h-8 rounded-[50%] object-cover flex-none" />
+                <p className="m-0 py-[10px] px-[14px] rounded-[18px] text-sm bg-wash text-ink rounded-bl-[6px]">Downstairs in 2. Buzzer 4B?</p>
+              </div>
               <p className="m-0 py-[10px] px-[14px] rounded-[18px] text-sm max-w-[85%] bg-brand text-on-brand justify-self-end rounded-br-[6px]">Yes! And there's wine on the left cuff 🙏</p>
             </div>
           </article>
@@ -44,6 +48,10 @@ export default function Features() {
           <article className={cx(cell, "col-span-4 bg-card text-card-fg shadow-none [--rd:.08s]")}>
             <h3 className={h3}>Proof of delivery</h3>
             <p className={cx(body, "text-card-fg/75")}>Every drop-off is documented, so you know exactly where your bag was left.</p>
+            <div className="mt-auto relative h-[132px] rounded-[18px] overflow-hidden">
+              <img {...photoSet(PHOTOS.door)} sizes="(max-width: 900px) 100vw, 30vw" alt="A driver handing an order to a customer at her door" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover object-[40%_60%]" />
+              <span className="absolute left-2.5 bottom-2.5 py-[7px] px-[11px] rounded-pill bg-white text-navy font-body font-semibold text-xs leading-none">Delivered · 8:41 PM</span>
+            </div>
           </article>
           <article className={cx(cell, plain, "col-span-4 [--rd:.16s]")}>
             <p className={cx(body, "font-display font-extrabold text-stat leading-[.85] tracking-display text-brand")}><span data-count="10" data-prefix="$">$10</span></p>

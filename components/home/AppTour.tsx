@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { cx } from "../ui";
+import { AVATARS } from "./photos";
 
 /* Hero phone that walks through the app. public/main.js cycles the steps: it sets data-step on #tour,
    moves .is-active between the .app-view screens and fills each .bar. Everything inside a screen
@@ -141,6 +142,11 @@ export default function AppTour() {
         "shadow-[0_0_0_1.5px_#1F2B52,0_60px_90px_-45px_color-mix(in_srgb,var(--blue)_70%,transparent)]",
         "animate-[phoneIn_1.3s_var(--ease)_.25s_both] motion-reduce:animate-none max-lg:justify-self-center max-lg:-order-1",
       )}>
+        <div className="absolute z-6 left-0 bottom-[14%] -translate-x-[58%] flex items-center gap-3 py-2 pl-2 pr-4 rounded-pill bg-surface text-ink shadow-[0_0_0_1px_var(--line),0_24px_44px_-20px_color-mix(in_srgb,var(--ink)_45%,transparent)] animate-[fadeUp_.8s_var(--ease)_1.8s_both] motion-reduce:animate-none max-lg:-translate-x-[8%] max-lg:bottom-[8%]" aria-hidden="true">
+          <img src={AVATARS.driver} alt="" width="44" height="44" className="w-11 h-11 rounded-[50%] object-cover flex-none" />
+          <span className="leading-[1.25]"><b className="block font-body font-semibold text-sm">Marcus is on his way</b><small className="block text-muted text-xs">Your driver · 4 min</small></span>
+          <i className="w-2 h-2 rounded-[50%] bg-brand animate-pulse" />
+        </div>
         <div className="relative aspect-[9/19] max-w-full rounded-[38px] overflow-hidden bg-app-bg text-navy">
           <div className="absolute inset-x-0 top-0 z-5 h-11 flex justify-between items-center px-[26px] font-body font-semibold text-[12px] leading-none transition-[color] duration-400 ease-brand group-data-[step=0]/tour:text-white" aria-hidden="true">
             <span>9:41</span><span className="w-[84px] h-6 rounded-pill bg-navy"></span><span>5G</span>

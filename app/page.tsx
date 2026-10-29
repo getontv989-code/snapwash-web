@@ -8,6 +8,9 @@ import HowItWorks from "@/components/home/HowItWorks";
 import ScanDemo from "@/components/home/ScanDemo";
 import Features from "@/components/home/Features";
 import Pricing from "@/components/home/Pricing";
+import DemoVideo from "@/components/home/DemoVideo";
+import People from "@/components/home/People";
+import { AVATARS } from "@/components/home/photos";
 import { Faq, Mark, Quotes, SwitchCards } from "@/components/sections";
 import { Kicker, cx, grid12, wrap } from "@/components/ui";
 import { hero } from "@/components/hero";
@@ -55,8 +58,10 @@ export default function HomePage() {
           </div>
         </section>
 
+        <DemoVideo />
         <Marquee />
         <HowItWorks />
+        <People />
         <ScanDemo />
         <Features />
         <Pricing />
@@ -67,8 +72,8 @@ export default function HomePage() {
         ]} />
 
         <SwitchCards items={[
-          { href: "/drive", kicker: "Drive with Snapwash", title: "Earn on your schedule." },
-          { href: "/cleaners", kicker: "For dry cleaners & laundromats", title: "Grow your shop." },
+          { href: "/drive", kicker: "Drive with Snapwash", title: "Earn on your schedule.", avatar: AVATARS.driver },
+          { href: "/cleaners", kicker: "For dry cleaners & laundromats", title: "Grow your shop.", avatar: AVATARS.cleaner },
         ]} />
 
         <Faq id="faq" kicker="FAQ" title="Before you hand over the good shirt." items={FAQ} />

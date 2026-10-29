@@ -71,7 +71,7 @@ export function Quotes({ items, label, solo = false, className }: { items: [Quot
 
 /* ---------- Links to the other pages ---------- */
 
-export type SwitchItem = { href: string; kicker: string; title: string };
+export type SwitchItem = { href: string; kicker: string; title: string; avatar?: string };
 
 export function SwitchCards({ items, night = false }: { items: SwitchItem[]; night?: boolean }) {
   return (
@@ -85,7 +85,10 @@ export function SwitchCards({ items, night = false }: { items: SwitchItem[]; nig
               // On the Drive page the card keeps its colours on hover; only the arrow and label react
               night ? "bg-night-2 text-night-fg shadow-[0_0_0_1px_var(--night-line)]" : "bg-surface shadow-[0_0_0_1px_var(--line)] hover:bg-brand hover:text-on-brand hover:shadow-none",
             )}>
-              <Kicker as="span" tone="switch" className="col-span-full">{it.kicker}</Kicker>
+              <span className="col-span-full flex items-center gap-3">
+                {it.avatar && <img src={it.avatar} alt="" width="40" height="40" loading="lazy" className="w-10 h-10 rounded-[50%] object-cover shadow-[0_0_0_2px_var(--surface)] transition-shadow duration-500 group-hover/switch:shadow-[0_0_0_2px_#fff]" />}
+                <Kicker as="span" tone="switch">{it.kicker}</Kicker>
+              </span>
               <h3 className="text-xl leading-[1.05] tracking-display">{it.title}</h3>
               <span className="w-[52px] h-[52px] rounded-[50%] grid place-items-center bg-brand text-on-brand self-end [transition:transform_.6s_var(--ease),rotate_.6s_var(--ease),background-color_.4s] group-hover/switch:-rotate-45 group-hover/switch:bg-white group-hover/switch:text-blue">
                 <ArrowIcon className="w-[22px] h-[22px]" />

@@ -5,6 +5,7 @@ import Dashboard from "@/components/cleaners/Dashboard";
 import { Faq, Mark, Quotes, SwitchCards } from "@/components/sections";
 import { ArrowIcon, Kicker, Section, SectionHead, btn, cx, grid12, tone, wrap } from "@/components/ui";
 import { hero } from "@/components/hero";
+import { PHOTOS, photoSet } from "@/components/home/photos";
 
 const description = "Partner with Snapwash to get pickup and delivery orders without running a fleet. Orders arrive itemized by AI, drivers handle the miles, payments split automatically. NY, NJ, CT.";
 
@@ -78,6 +79,19 @@ export default function CleanersPage() {
         <Section className="pt-0" aria-labelledby="flow-title">
           <div className={wrap}>
             <SectionHead kicker="How an order moves" title="You do one step. We do four." titleId="flow-title" />
+            <figure className="reveal relative m-0 mb-[clamp(32px,4vw,56px)] rounded-card overflow-hidden isolate bg-card aspect-[21/9] max-lg:aspect-[4/3]">
+              <img {...photoSet(PHOTOS.team)} sizes="(max-width: 1024px) 100vw, 1200px" alt={PHOTOS.team.alt} loading="lazy" decoding="async"
+                className="absolute inset-0 -z-2 w-full h-full object-cover object-[60%_45%]" />
+              <span className="absolute inset-0 -z-1 bg-linear-to-r from-navy/70 via-navy/10 to-transparent max-lg:bg-linear-to-t" aria-hidden="true"></span>
+              <figcaption className="absolute left-card-lg bottom-card-lg max-w-[30ch] grid gap-2 text-white max-lg:left-card max-lg:bottom-card max-lg:max-w-[22ch]">
+                <span className="justify-self-start font-body font-medium text-xs leading-none tracking-tag uppercase py-2 px-3 rounded-pill bg-white/18 backdrop-blur-sm">Step 04 · You</span>
+                <span className="font-display font-extrabold text-xl leading-none tracking-display text-balance">The part you're best at.</span>
+              </figcaption>
+              <div className="absolute right-card-lg bottom-card-lg w-[clamp(120px,19%,240px)] aspect-[4/5] rounded-[18px] overflow-hidden shadow-[0_0_0_4px_var(--surface),0_30px_60px_-30px_rgba(0,0,0,.6)] max-lg:right-card max-lg:top-card max-lg:bottom-auto max-lg:w-[30%]">
+                <img {...photoSet(PHOTOS.label)} sizes="240px" alt={PHOTOS.label.alt} loading="lazy" decoding="async" className="w-full h-full object-cover" />
+                <span className="absolute left-2 right-2 bottom-2 text-center font-body font-semibold text-[11px] leading-none tracking-pill py-2 rounded-pill bg-surface text-ink max-sm:hidden">Ready · Order #2418</span>
+              </div>
+            </figure>
             <ol className="reveal grid grid-cols-5 gap-0 [counter-reset:f] border-t-[1.5px] border-t-ink max-xl:grid-cols-2 max-sm:grid-cols-1">
               {FLOW.map((f) => (
                 <li key={f.title} className={cx(
