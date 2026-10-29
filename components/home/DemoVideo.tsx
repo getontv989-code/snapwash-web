@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Kicker, cx, wrap } from "../ui";
+import StoreButtons from "../StoreButtons";
 
 /* The film is 60s, 1280x720, H.264. Nothing but the poster downloads until the visitor presses play. */
 const VIDEO = { src: "/video/snapwash-how-it-works.mp4", poster: "/video/snapwash-how-it-works.webp" };
@@ -9,6 +10,7 @@ const VIDEO = { src: "/video/snapwash-how-it-works.mp4", poster: "/video/snapwas
 /** Product film right under the hero: a still poster with a play button that swaps in the video. */
 export default function DemoVideo() {
   const [playing, setPlaying] = useState(false);
+  const [ended, setEnded] = useState(false);
 
   return (
     <section className="pb-section" id="watch" aria-labelledby="watch-title">
@@ -23,7 +25,8 @@ export default function DemoVideo() {
 
         <div className="reveal [--rd:.08s] relative rounded-card overflow-hidden isolate bg-card aspect-video shadow-[0_0_0_1px_var(--line),0_40px_80px_-50px_color-mix(in_srgb,var(--ink)_60%,transparent)]">
           {playing ? (
-            <video className="absolute inset-0 w-full h-full bg-paper" src={VIDEO.src} poster={VIDEO.poster} controls autoPlay playsInline preload="none" />
+            <video className="absolute inset-0 w-full h-full bg-paper" src={VIDEO.src} poster={VIDEO.poster} controls={!ended} autoPlay playsInline preload="none"
+              onEnded={() => setEnded(true)} onPlay={() => setEnded(false)} />
           ) : (
             <button type="button" onClick={() => setPlaying(true)} aria-label="Play the Snapwash film, 1 minute"
               className="group/play absolute inset-0 w-full h-full border-0 p-0 cursor-pointer bg-transparent">
@@ -39,7 +42,24 @@ export default function DemoVideo() {
               <span className="absolute right-[clamp(12px,1.6vw,24px)] bottom-[clamp(12px,1.6vw,24px)] font-body font-semibold text-xs leading-none tracking-pill py-2 px-3 rounded-pill bg-navy/80 text-white tabular-nums" aria-hidden="true">1:00</span>
             </button>
           )}
+          {ended && (
+            <div className="absolute z-1 inset-x-0 top-[71%] flex justify-center gap-3 animate-fade-up [--d:.1s] max-sm:hidden">
+              <StoreButtons onBlue magnetic={false} className="max-lg:min-h-11 max-lg:text-sm max-lg:[&_svg]:w-4 max-lg:[&_svg]:h-4" />
+            </div>
+          )}
+          {ended && (
+            <button type="button" onClick={(e) => { const v = e.currentTarget.parentElement?.querySelector("video"); if (v) { v.currentTime = 0; v.play(); } }}
+              className="absolute right-[clamp(12px,1.6vw,24px)] bottom-[clamp(12px,1.6vw,24px)] inline-flex items-center gap-2 border-0 cursor-pointer font-body font-semibold text-xs leading-none tracking-pill py-2 px-3 rounded-pill bg-navy/80 text-white transition-colors duration-300 hover:bg-navy">
+              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8" /><path d="M3 3v5h5" /></svg>
+              Watch again
+            </button>
+          )}
         </div>
+        {ended && (
+          <div className="flex flex-wrap gap-3 mt-4 animate-fade-up [--d:.1s] sm:hidden">
+            <StoreButtons magnetic={false} />
+          </div>
+        )}
       </div>
     </section>
   );
