@@ -12,7 +12,7 @@ const PAGES: { key: Page; href: string; label: string }[] = [
 const CTA: Record<Page, { href: string; label: string }> = {
   index: { href: "#download", label: "Get the app" },
   drive: { href: "#apply", label: "Start driving" },
-  cleaners: { href: "#list", label: "List your shop" },
+  cleaners: { href: "#apply", label: "List your shop" },
 };
 
 /* .site-header, .menu-btn, .theme-btn and #menu are hooks for public/main.js (scroll, menu, theme) */
