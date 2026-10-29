@@ -4,8 +4,9 @@ import { useState } from "react";
 import { Kicker, cx, wrap } from "../site";
 import StoreButtons from "../StoreButtons";
 
-/* The film is 60s, 1280x720, H.264. Nothing but the poster downloads until the visitor presses play. */
-const VIDEO = { src: "/video/snapwash-how-it-works.mp4", poster: "/video/snapwash-how-it-works.webp" };
+/* The film is 60s of H.264: 1080p (6.7 MB) for larger screens, 720p (4 MB) for phones.
+   Nothing but the poster downloads until the visitor presses play. */
+const VIDEO = { hd: "/video/snapwash-how-it-works.mp4", sd: "/video/snapwash-how-it-works-720.mp4", poster: "/video/snapwash-how-it-works.webp" };
 
 /** Product film right under the hero: a still poster with a play button that swaps in the video. */
 export default function DemoVideo() {
@@ -25,8 +26,11 @@ export default function DemoVideo() {
 
         <div className="reveal [--rd:.08s] relative rounded-card overflow-hidden isolate bg-card aspect-video shadow-[0_0_0_1px_var(--line),0_40px_80px_-50px_color-mix(in_srgb,var(--ink)_60%,transparent)]">
           {playing ? (
-            <video className="absolute inset-0 w-full h-full bg-paper" src={VIDEO.src} poster={VIDEO.poster} controls={!ended} autoPlay playsInline preload="none"
-              onEnded={() => setEnded(true)} onPlay={() => setEnded(false)} />
+            <video className="absolute inset-0 w-full h-full bg-paper" poster={VIDEO.poster} controls={!ended} autoPlay playsInline preload="none"
+              onEnded={() => setEnded(true)} onPlay={() => setEnded(false)}>
+              <source src={VIDEO.sd} type="video/mp4" media="(max-width: 760px)" />
+              <source src={VIDEO.hd} type="video/mp4" />
+            </video>
           ) : (
             <button type="button" onClick={() => setPlaying(true)} aria-label="Play the Snapwash film, 1 minute"
               className="group/play absolute inset-0 w-full h-full border-0 p-0 cursor-pointer bg-transparent">
