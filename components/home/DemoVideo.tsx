@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Kicker, cx, wrap } from "../ui";
+import { Kicker, cx, wrap } from "../site";
 import StoreButtons from "../StoreButtons";
 
 /* The film is 60s, 1280x720, H.264. Nothing but the poster downloads until the visitor presses play. */

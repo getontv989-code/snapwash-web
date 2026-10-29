@@ -1,5 +1,6 @@
-import { ArrowLink, Kicker, Section, btn, cx, grid12, wrap } from "../ui";
+import { ArrowLink, Kicker, Section, cx, grid12, wrap } from "../site";
 import { GarmentBox } from "./AppTour";
+import { buttonVariants } from "@/components/ui/button";
 
 /* public/main.js runs the demo on a loop: it toggles .is-scanning / .is-done on #scan-phone, .is-found on
    each .vf-box inside .viewfinder, and appends rows to #bag (row classes live in main.js). */
@@ -24,7 +25,7 @@ export default function ScanDemo() {
               </div>
               <p className="flex justify-between items-baseline font-body font-semibold text-sm leading-none" id="bag-total"><span>Your bag</span><b className="font-display font-extrabold text-lg leading-none text-brand">$0.00</b></p>
               <ul className="grid gap-0 content-start min-h-[168px]" id="bag"><li className="bag-empty block py-2 border-t border-t-line text-sm text-muted animate-rise">Your bag is empty.</li></ul>
-              <div className={btn("static")} id="scan-btn" aria-hidden="true"><span>Scanning</span></div>
+              <div className={buttonVariants({ variant: "static" })} id="scan-btn" aria-hidden="true"><span>Scanning</span></div>
               <p className="font-body font-medium text-xs leading-[1.4] text-muted text-center tracking-note">Demo · items are examples</p>
             </div>
           </div>

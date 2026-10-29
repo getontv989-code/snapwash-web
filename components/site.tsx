@@ -58,34 +58,7 @@ export function SectionHead({ kicker, title, titleId, children }: { kicker: Reac
   );
 }
 
-/* ---------- Buttons ---------- */
-
-const btnBase = cx(
-  "relative inline-flex items-center gap-3 min-h-[52px] py-2 pr-6 pl-5 rounded-pill border-0",
-  "bg-(--bg) text-(--fg) no-underline font-body font-semibold text-base leading-none overflow-hidden isolate",
-  "transition-[transform,box-shadow] duration-400 ease-brand will-change-transform",
-  // The ink fill slides up from below on hover
-  "before:absolute before:inset-0 before:-z-1 before:rounded-[inherit] before:bg-ink",
-  "before:[transform:translateY(101%)] before:transition-transform before:duration-500 before:ease-brand hover:before:[transform:none]",
-  "hover:text-paper active:[transform:scale(.97)] [&_svg]:w-5 [&_svg]:h-5 [&_svg]:flex-none",
-);
-const btnGlow = "hover:shadow-[0_14px_30px_-14px_color-mix(in_srgb,var(--blue)_70%,transparent)]";
-
-const btnVariant = {
-  /** Brand blue */
-  primary: cx("[--bg:var(--blue)] [--fg:var(--on-blue)] cursor-pointer", btnGlow),
-  /** Outline in the text colour */
-  line: "[--bg:transparent] [--fg:var(--ink)] cursor-pointer shadow-[inset_0_0_0_1.5px_currentColor] hover:shadow-[inset_0_0_0_1.5px_var(--ink)]",
-  /** White, for use on a blue card */
-  inverse: cx("[--bg:#FFFFFF] [--fg:#0060F6] cursor-pointer hover:text-white", btnGlow),
-  /** Looks like a primary button but isn't interactive (demo screens) */
-  static: "[--bg:var(--blue)] [--fg:var(--on-blue)] w-full justify-center pointer-events-none cursor-default",
-};
-export type ButtonVariant = keyof typeof btnVariant;
-
-export function btn(variant: ButtonVariant = "primary", className?: string) {
-  return cx(btnBase, btnVariant[variant], className);
-}
+/* Buttons live in components/ui/button.tsx (shadcn/ui Button and buttonVariants). */
 
 /* ---------- Icons ---------- */
 

@@ -1,8 +1,8 @@
-import { Section, SectionHead, cx, wrap } from "../ui";
+import { Section, SectionHead, cx, wrap } from "../site";
 import { AVATARS, PHOTOS, photoSet } from "./photos";
+import { Card } from "@/components/ui/card";
 
 const cell = "reveal relative rounded-card p-card flex flex-col gap-[10px] min-w-0 overflow-hidden transition-[transform,translate,box-shadow] duration-500 ease-brand hover:-translate-y-1 hover:shadow-[0_0_0_1.5px_var(--blue)] max-lg:col-span-full";
-const plain = "bg-surface shadow-[0_0_0_1px_var(--line)]";
 const h3 = "text-xl leading-none tracking-display";
 const body = "max-w-[42ch]";
 
@@ -15,7 +15,7 @@ export default function Features() {
           Every order is visible from the moment it leaves your hands to the moment it's back on the hanger.
         </SectionHead>
         <div className="grid grid-cols-12 gap-tile">
-          <article className={cx(cell, "col-span-7 bg-brand text-on-brand shadow-none")}>
+          <Card as="article" variant="plain" className={cx(cell, "col-span-7 bg-brand text-on-brand shadow-none")}>
             <h3 className={h3}>Live tracking</h3>
             <p className={cx(body, "text-white/85")}>Your driver on a map, in real time. No more waiting in the lobby.</p>
             <div className="mt-auto h-[120px] rounded-[18px] bg-white/12 relative overflow-hidden" aria-hidden="true">
@@ -26,8 +26,8 @@ export default function Features() {
                 <circle className="fill-white" cx="330" cy="20" r="9" />
               </svg>
             </div>
-          </article>
-          <article className={cx(cell, plain, "col-span-5 [--rd:.08s]")}>
+          </Card>
+          <Card as="article" className={cx(cell, "col-span-5 [--rd:.08s]")}>
             <h3 className={h3}>Live chat</h3>
             <p className={cx(body, "text-muted")}>Message your driver or your cleaner without leaving the order.</p>
             <div className="mt-auto grid gap-2" aria-hidden="true">
@@ -37,27 +37,27 @@ export default function Features() {
               </div>
               <p className="m-0 py-[10px] px-[14px] rounded-[18px] text-sm max-w-[85%] bg-brand text-on-brand justify-self-end rounded-br-[6px]">Yes! And there's wine on the left cuff 🙏</p>
             </div>
-          </article>
-          <article className={cx(cell, plain, "col-span-4")}>
+          </Card>
+          <Card as="article" className={cx(cell, "col-span-4")}>
             <h3 className={h3}>One tap to pay</h3>
             <p className={cx(body, "text-muted")}>Charged once per order, processed by Stripe.</p>
             <div className="mt-auto flex flex-wrap gap-2">
               {["Apple Pay", "Google Pay", "Card"].map((m) => <span key={m} className="py-2 px-3 rounded-pill shadow-[inset_0_0_0_1.5px_currentColor] font-body font-medium text-xs leading-none tracking-pill uppercase">{m}</span>)}
             </div>
-          </article>
-          <article className={cx(cell, "col-span-4 bg-card text-card-fg shadow-none [--rd:.08s]")}>
+          </Card>
+          <Card as="article" variant="plain" className={cx(cell, "col-span-4 bg-card text-card-fg shadow-none [--rd:.08s]")}>
             <h3 className={h3}>Proof of delivery</h3>
             <p className={cx(body, "text-card-fg/75")}>Every drop-off is documented, so you know exactly where your bag was left.</p>
             <div className="mt-auto relative h-[132px] rounded-[18px] overflow-hidden">
               <img {...photoSet(PHOTOS.door)} sizes="(max-width: 900px) 100vw, 30vw" alt="A driver handing an order to a customer at her door" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover object-[40%_60%]" />
               <span className="absolute left-2.5 bottom-2.5 py-[7px] px-[11px] rounded-pill bg-white text-navy font-body font-semibold text-xs leading-none">Delivered · 8:41 PM</span>
             </div>
-          </article>
-          <article className={cx(cell, plain, "col-span-4 [--rd:.16s]")}>
+          </Card>
+          <Card as="article" className={cx(cell, "col-span-4 [--rd:.16s]")}>
             <p className={cx(body, "font-display font-extrabold text-stat leading-[.85] tracking-display text-brand")}><span data-count="10" data-prefix="$">$10</span></p>
             <h3 className={h3}>For every friend you bring</h3>
             <p className={cx(body, "text-muted")}>Share your code. When they place an order, you both feel cleaner.</p>
-          </article>
+          </Card>
         </div>
       </div>
     </Section>

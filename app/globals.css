@@ -50,6 +50,27 @@
   color-scheme: dark;
 }
 
+/* shadcn/ui's theme variables, mapped onto the tokens above so its components follow light and dark
+   for free. `card` and `muted` keep this site's meaning (navy card, muted text), so shadcn's muted
+   text is muted-foreground and its card surface is the Card component's default variant. */
+:root {
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --primary: var(--blue);
+  --primary-foreground: var(--on-blue);
+  --secondary: color-mix(in oklab, var(--ink) 6%, transparent);
+  --secondary-foreground: var(--ink);
+  --accent: var(--blue-wash);
+  --accent-foreground: var(--ink);
+  --muted-foreground: var(--muted);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--blue);
+  --radius: 24px;
+}
+
 /* ---------- Design tokens ---------- */
 @theme inline {
   /* Colors that follow the theme */
@@ -69,6 +90,21 @@
   --color-night-fg: var(--night-fg);
   --color-night-muted: var(--night-muted);
   --color-night-line: var(--night-line);
+  /* shadcn/ui names for the same colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
   /* Fixed colors (same in both themes): the logo blue, the phone navy, and the app mockup palette */
   --color-white: #FFFFFF;
   --color-transparent: transparent;

@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
-import { Kicker, Section, SectionHead, cx, grid12, wrap } from "@/components/ui";
+import { Kicker, Section, SectionHead, cx, grid12, wrap } from "@/components/site";
 import { hero } from "@/components/hero";
+import { Card } from "@/components/ui/card";
 
 const SITE = "https://snapwash.io";
 
@@ -70,7 +71,7 @@ export function LocationHero({ crumbs, kicker, title, accent, lede, children, as
 /** Card of big numbers or key facts, used as the hero aside. */
 export function FactCard({ title, facts }: { title: string; facts: { value: ReactNode; label: string }[] }) {
   return (
-    <div className="grid gap-5 p-card-lg rounded-card bg-surface shadow-[0_0_0_1px_var(--line)]">
+    <Card className="grid gap-5 p-card-lg">
       <p className="font-body font-medium text-xs leading-[1.2] tracking-kicker uppercase text-muted">{title}</p>
       <dl className="grid gap-4">
         {facts.map((f) => (
@@ -80,7 +81,7 @@ export function FactCard({ title, facts }: { title: string; facts: { value: Reac
           </div>
         ))}
       </dl>
-    </div>
+    </Card>
   );
 }
 

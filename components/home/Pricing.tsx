@@ -1,4 +1,7 @@
-import { CheckIcon, Section, SectionHead, btn, cx, wrap } from "../ui";
+import { CheckIcon, Section, SectionHead, cx, wrap } from "../site";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { Card } from "@/components/ui/card";
 
 const PLANS = [
   { name: "Pay As You Go", amt: "$0", per: "to join", cta: "Start free", featured: false,
@@ -16,9 +19,9 @@ export default function Pricing() {
         </SectionHead>
         <div className="grid grid-cols-12 gap-tile items-stretch">
           {PLANS.map((p) => (
-            <article key={p.name} className={cx(
-              "reveal rounded-card p-card-lg flex flex-col gap-[18px] min-w-0 relative overflow-hidden transition-[transform,translate] duration-500 ease-brand hover:-translate-y-1.5 col-span-6 max-lg:col-span-full",
-              p.featured ? "bg-brand text-on-brand [--rd:.1s]" : "bg-surface shadow-[0_0_0_1px_var(--line)]",
+            <Card as="article" key={p.name} variant={p.featured ? "plain" : "default"} className={cx(
+              "reveal p-card-lg flex flex-col gap-[18px] min-w-0 relative overflow-hidden transition-[transform,translate] duration-500 ease-brand hover:-translate-y-1.5 col-span-6 max-lg:col-span-full",
+              p.featured && "bg-brand text-on-brand [--rd:.1s]",
             )}>
               {p.ribbon && <span className="absolute right-card-lg top-card-lg font-body font-medium text-xs leading-none tracking-tag uppercase py-2 px-3 rounded-pill bg-white/18 max-sm:static max-sm:self-start">{p.ribbon}</span>}
               <p className="font-body font-semibold text-lg leading-[1.2]">{p.name}</p>
@@ -31,8 +34,8 @@ export default function Pricing() {
                   <li key={perk} className="grid grid-cols-[22px_1fr] gap-3 items-start"><CheckIcon className={cx("w-[22px] h-[22px]", !p.featured && "text-brand")} /><span>{perk}</span></li>
                 ))}
               </ul>
-              <a className={btn(p.featured ? "inverse" : "line", "mt-auto self-start")} href="#download" data-magnetic>{p.cta}</a>
-            </article>
+              <a className={cn(buttonVariants({ variant: p.featured ? "inverse" : "outline" }), "mt-auto self-start")} href="#download" data-magnetic>{p.cta}</a>
+            </Card>
           ))}
         </div>
       </div>

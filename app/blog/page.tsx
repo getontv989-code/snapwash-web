@@ -4,7 +4,7 @@ import SiteFooter from "@/components/SiteFooter";
 import AppBand from "@/components/blog/AppBand";
 import { FeaturedPost, PostCard } from "@/components/blog/PostCard";
 import { SwitchCards } from "@/components/sections";
-import { Kicker, Section, SectionHead, cx, grid12, wrap } from "@/components/ui";
+import { Kicker, Section, SectionHead, cx, grid12, wrap } from "@/components/site";
 import { hero } from "@/components/hero";
 import { getPosts } from "@/lib/blog";
 
