@@ -61,7 +61,7 @@ export default async function AreaPage({ params }: { params: Promise<Params> }) 
         breadcrumbLd(crumbs),
         { "@type": "FAQPage", mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
       ]} />
-      <SiteHeader />
+      <SiteHeader current="locations" />
       <main id="main">
         <LocationHero
           crumbs={crumbs}

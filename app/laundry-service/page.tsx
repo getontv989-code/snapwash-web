@@ -44,7 +44,7 @@ export default async function LaundryServiceHub() {
         { "@type": "CollectionPage", name: "Snapwash laundry service locations", url: `https://snapwash.io${paths.hub()}`, description },
         breadcrumbLd(crumbs),
       ]} />
-      <SiteHeader />
+      <SiteHeader current="locations" />
       <main id="main">
         <LocationHero
           crumbs={crumbs}

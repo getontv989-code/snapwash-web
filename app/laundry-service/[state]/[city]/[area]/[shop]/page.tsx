@@ -73,7 +73,7 @@ export default async function ShopPage({ params }: { params: Promise<Params> }) 
         breadcrumbLd(crumbs),
         ...(faq.length ? [{ "@type": "FAQPage", mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }] : []),
       ]} />
-      <SiteHeader />
+      <SiteHeader current="locations" />
       <main id="main">
         <LocationHero
           crumbs={crumbs}

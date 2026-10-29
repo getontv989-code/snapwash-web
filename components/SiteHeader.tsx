@@ -3,12 +3,13 @@ import { btn, cx, wrap } from "./ui";
 
 export const RETAILER_LOGIN_URL = "https://retailer.snapwash.io/sign-in?redirectUrl=/";
 
-type Page = "index" | "drive" | "cleaners";
+type Page = "index" | "drive" | "cleaners" | "locations";
 
 const PAGES: { key: Page | "retailer"; href: string; label: string; external?: boolean }[] = [
   { key: "index", href: "/", label: "For you" },
   { key: "drive", href: "/drive", label: "Drive" },
   { key: "cleaners", href: "/cleaners", label: "Cleaners" },
+  { key: "locations", href: "/laundry-service", label: "Locations" },
   { key: "retailer", href: RETAILER_LOGIN_URL, label: "Retailer login", external: true },
 ];
 
@@ -16,6 +17,7 @@ const CTA: Record<Page, { href: string; label: string }> = {
   index: { href: "#download", label: "Get the app" },
   drive: { href: "#apply", label: "Start driving" },
   cleaners: { href: "#apply", label: "List your shop" },
+  locations: { href: "/#download", label: "Get the app" },
 };
 
 /* .site-header, .menu-btn, .theme-btn and #menu are hooks for public/main.js (scroll, menu, theme) */

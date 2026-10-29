@@ -8,8 +8,13 @@ const COLUMNS: { id: string; title: string; links: { href: string; label: string
     { href: "/drive", label: "Drive with us" },
     { href: "/cleaners", label: "For cleaners" },
     { href: RETAILER_LOGIN_URL, label: "Retailer login" },
-    { href: "/laundry-service", label: "Locations" },
     { href: "/#pricing", label: "Pricing" },
+  ] },
+  { id: "f4", title: "Locations", links: [
+    { href: "/laundry-service", label: "All locations" },
+    { href: "/laundry-service/ny", label: "New York" },
+    { href: "/laundry-service/ny/new-york-city", label: "New York City" },
+    { href: "/laundry-service/ny/new-york-city/upper-west-side", label: "Upper West Side" },
   ] },
   { id: "f2", title: "Company", links: [
     { href: "/about", label: "About" },
@@ -37,7 +42,7 @@ export default function SiteFooter() {
           </a>
           <p className="max-w-[44ch] opacity-90">Laundry and dry cleaning pickup and delivery from the cleaners in your neighborhood. Serving New York, New Jersey and Connecticut.</p>
         </div>
-        <div className="grid grid-cols-3 gap-8 py-8 max-sm:grid-cols-2">
+        <div className="grid grid-cols-4 gap-8 py-8 max-lg:grid-cols-2">
           {COLUMNS.map((col) => (
             <nav key={col.id} aria-labelledby={col.id}>
               <h2 id={col.id} className="font-body font-medium text-xs leading-none tracking-kicker uppercase opacity-70 mb-4">{col.title}</h2>
