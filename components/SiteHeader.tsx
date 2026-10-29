@@ -25,7 +25,7 @@ const roundBtn = "py-px px-1.5 rounded-[50%] border-0 cursor-pointer bg-ink/6 te
 const themeIcon = "[grid-area:1/1] w-5 h-5 max-lg:w-[18px] max-lg:h-[18px] [transition:transform_.5s_var(--ease),rotate_.5s_var(--ease),scale_.5s_var(--ease),opacity_.3s_var(--ease)]";
 const burgerBar = "before:absolute before:left-0 before:w-[18px] before:h-0.5 before:bg-current before:transition-transform before:duration-400 before:ease-brand after:absolute after:left-0 after:w-[18px] after:h-0.5 after:bg-current after:transition-transform after:duration-400 after:ease-brand";
 
-/** current is omitted on pages outside the three main ones (e.g. the location directory) */
+/** `current` is left out on pages outside the main nav (e.g. the blog). */
 export default function SiteHeader({ current }: { current?: Page }) {
   const cta = current ? CTA[current] : { href: "/#download", label: "Get the app" };
   return (
