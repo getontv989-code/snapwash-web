@@ -1,6 +1,8 @@
 import Logo from "./Logo";
 import { RETAILER_LOGIN_URL } from "./SiteHeader";
 import { cx, wrap } from "./ui";
+import { STATES } from "@/lib/locations/data";
+import { paths } from "@/lib/locations";
 
 const COLUMNS: { id: string; title: string; links: { href: string; label: string; external?: boolean }[] }[] = [
   { id: "f1", title: "Snapwash", links: [
@@ -11,10 +13,9 @@ const COLUMNS: { id: string; title: string; links: { href: string; label: string
     { href: "/#pricing", label: "Pricing" },
   ] },
   { id: "f4", title: "Locations", links: [
-    { href: "/laundry-service", label: "All locations" },
-    { href: "/laundry-service/ny", label: "New York" },
-    { href: "/laundry-service/ny/new-york-city", label: "New York City" },
-    { href: "/laundry-service/ny/new-york-city/upper-west-side", label: "Upper West Side" },
+    { href: paths.hub(), label: "All locations" },
+    // Main states only: any state with its own page shows up here
+    ...STATES.filter((st) => st.listed).map((st) => ({ href: paths.state(st), label: st.name })),
   ] },
   { id: "f2", title: "Company", links: [
     { href: "/about", label: "About" },
