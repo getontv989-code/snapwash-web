@@ -12,7 +12,7 @@ import DemoVideo from "@/components/home/DemoVideo";
 import People from "@/components/home/People";
 import { AVATARS } from "@/components/home/photos";
 import { Faq, Mark, Quotes, SwitchCards } from "@/components/sections";
-import { Kicker, cx, grid12, wrap } from "@/components/ui";
+import { Kicker, cx, grid12, wrap } from "@/components/site";
 import { hero } from "@/components/hero";
 
 const description = "Snapwash picks up your laundry and dry cleaning, takes it to a local cleaner you choose, and brings it back fresh. Scan clothes with AI, track your driver live. Unlimited delivery $14.99/mo.";

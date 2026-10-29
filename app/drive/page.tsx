@@ -5,7 +5,7 @@ import StoreButtons from "@/components/StoreButtons";
 import RouteCard from "@/components/drive/RouteCard";
 import Perks from "@/components/drive/Perks";
 import { Faq, Mark, Quotes, SwitchCards } from "@/components/sections";
-import { Kicker, Section, SectionHead, cx, grid12, tone, wrap } from "@/components/ui";
+import { Kicker, Section, SectionHead, cx, grid12, tone, wrap } from "@/components/site";
 import { hero } from "@/components/hero";
 import { PHOTOS, photoSet } from "@/components/home/photos";
 import ApplyForm from "@/components/ApplyForm";

@@ -1,4 +1,4 @@
-import { Kicker, cx, wrap } from "../ui";
+import { Kicker, cx, wrap } from "../site";
 
 const STEPS = [
   { tag: "Step 1 · Choose", title: "Pick your cleaner", body: "Browse the dry cleaners and laundromats near you and choose the one you already trust." },

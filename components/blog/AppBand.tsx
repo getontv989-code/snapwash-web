@@ -1,4 +1,5 @@
-import { ArrowIcon, Kicker, Section, btn, cx, tone, wrap } from "../ui";
+import { ArrowIcon, Kicker, Section, cx, tone, wrap } from "../site";
+import { buttonVariants } from "@/components/ui/button";
 
 /** Blue "get the app" band that closes blog pages. */
 export default function AppBand() {
@@ -11,7 +12,7 @@ export default function AppBand() {
           <p className="text-white/88 max-w-[44ch]">Scan your bag, pick a local cleaner, and a driver handles the rest. Serving New York, New Jersey and Connecticut.</p>
         </div>
         <div className="reveal [--rd:.1s] col-[9/-1] justify-self-end max-lg:col-span-full max-lg:justify-self-start">
-          <a className={btn("inverse")} href="/#download" data-magnetic="">Get the app <ArrowIcon /></a>
+          <a className={buttonVariants({ variant: "inverse" })} href="/#download" data-magnetic="">Get the app <ArrowIcon /></a>
         </div>
       </div>
     </Section>

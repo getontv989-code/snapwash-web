@@ -3,10 +3,12 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import Dashboard from "@/components/cleaners/Dashboard";
 import { Faq, Mark, Quotes, SwitchCards } from "@/components/sections";
-import { ArrowIcon, Kicker, Section, SectionHead, btn, cx, grid12, tone, wrap } from "@/components/ui";
+import { ArrowIcon, Kicker, Section, SectionHead, cx, grid12, tone, wrap } from "@/components/site";
 import { hero } from "@/components/hero";
 import ApplyForm from "@/components/ApplyForm";
 import { PHOTOS, photoSet } from "@/components/home/photos";
+import { buttonVariants } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 const description = "Partner with Snapwash to get pickup and delivery orders without running a fleet. Orders arrive itemized by AI, drivers handle the miles, payments split automatically. NY, NJ, CT.";
 
@@ -54,15 +56,15 @@ export default function CleanersPage() {
               <Kicker className="animate-fade-up [--d:.05s] mb-7">For dry cleaners &amp; laundromats</Kicker>
               <h1 id="h1" className={hero.h1}>More orders. <em className={hero.em}>No delivery van.</em></h1>
             </div>
-            <div className="col-[9/-1] row-[1/span_2] self-center grid gap-[14px] p-card-lg rounded-card bg-surface shadow-[0_0_0_1px_var(--line)] max-lg:col-span-full max-lg:row-auto animate-fade-up [--d:.6s]">
+            <Card className="col-[9/-1] row-[1/span_2] self-center grid gap-[14px] p-card-lg max-lg:col-span-full max-lg:row-auto animate-fade-up [--d:.6s]">
               <p className="font-display font-extrabold text-[clamp(3.5rem,2.2rem+3.6vw,6rem)] leading-[.85] tracking-tightest text-brand tabular-nums"><span data-count="40" data-prefix="+" data-suffix="%">+40%</span></p>
               <p className="font-body font-medium text-xs leading-[1.4] tracking-caps uppercase text-muted max-w-[36ch]">Order volume increase at a Connecticut partner after joining Snapwash</p>
-            </div>
+            </Card>
             <div className="col-[1/span_6] row-2 grid gap-6 content-start max-lg:col-span-full max-lg:row-auto">
               <p className={cx(hero.lede, "animate-fade-up [--d:.7s]")}>Snapwash puts your shop in front of customers who'd rather not carry a bag across town. They scan, our drivers deliver, you clean. Everything runs from one dashboard.</p>
               <div className={cx(hero.ctas, "animate-fade-up [--d:.85s]")} id="list">
-                <a className={btn("primary")} href="#apply" data-magnetic>List your shop <ArrowIcon /></a>
-                <a className={btn("line")} href="#dashboard" data-magnetic>See the dashboard</a>
+                <a className={buttonVariants()} href="#apply" data-magnetic>List your shop <ArrowIcon /></a>
+                <a className={buttonVariants({ variant: "outline" })} href="#dashboard" data-magnetic>See the dashboard</a>
               </div>
             </div>
           </div>

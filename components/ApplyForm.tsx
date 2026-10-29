@@ -1,15 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowIcon, CheckIcon, Kicker, Section, btn, cx, wrap } from "./ui";
+import { ArrowIcon, CheckIcon, Kicker, Section, cx, wrap } from "./site";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export type ApplyField = { name: string; label: string; type?: "text" | "email" | "tel"; autoComplete?: string };
-
-const input = cx(
-  "w-full min-h-[52px] px-[18px] rounded-[14px] bg-paper text-ink border border-line font-body text-base",
-  "placeholder:text-muted transition-[border-color,box-shadow] duration-300 ease-brand",
-  "hover:border-ink/30 focus:outline-none focus:border-brand focus:shadow-[0_0_0_3px_color-mix(in_srgb,var(--blue)_25%,transparent)]",
-);
 
 /** Partner / driver application section (#apply). Not wired to a backend yet: submitting only confirms on the page. */
 export default function ApplyForm({ kicker, title, intro, fields, id = "apply" }: {
@@ -25,7 +23,7 @@ export default function ApplyForm({ kicker, title, intro, fields, id = "apply" }
           <h2 id={titleId} className="text-2xl leading-none tracking-display font-bold text-balance">{title}</h2>
           <p className="text-muted max-w-[38ch]">{intro}</p>
         </div>
-        <div className="reveal [--rd:.1s] col-[7/-1] rounded-card bg-surface shadow-[0_0_0_1px_var(--line)] p-card-lg max-lg:col-span-full">
+        <Card className="reveal [--rd:.1s] col-[7/-1] p-card-lg max-lg:col-span-full">
           {sent ? (
             <div className="grid gap-4 justify-items-start" role="status">
               <span className="w-12 h-12 grid place-items-center rounded-[50%] bg-brand text-on-brand"><CheckIcon className="w-6 h-6" /></span>
@@ -35,19 +33,19 @@ export default function ApplyForm({ kicker, title, intro, fields, id = "apply" }
           ) : (
             <form className="grid gap-5" onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
               {fields.map((f) => (
-                <label key={f.name} className="grid gap-2">
-                  <span className="font-body font-medium text-sm leading-none">{f.label}</span>
-                  <input className={input} name={f.name} type={f.type ?? "text"} autoComplete={f.autoComplete} required />
-                </label>
+                <div key={f.name} className="grid gap-2">
+                  <Label htmlFor={`${id}-${f.name}`}>{f.label}</Label>
+                  <Input id={`${id}-${f.name}`} name={f.name} type={f.type ?? "text"} autoComplete={f.autoComplete} required />
+                </div>
               ))}
               <label className="flex items-start gap-3 text-sm text-muted cursor-pointer">
                 <input className="mt-0.5 w-[18px] h-[18px] flex-none accent-brand" type="checkbox" name="ack" required />
                 I understand this form is not yet connected.
               </label>
-              <button className={btn("primary", "justify-self-start")} type="submit">Review interest <ArrowIcon /></button>
+              <Button className="justify-self-start" type="submit">Review interest <ArrowIcon /></Button>
             </form>
           )}
-        </div>
+        </Card>
       </div>
     </Section>
   );

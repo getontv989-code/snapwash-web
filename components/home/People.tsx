@@ -1,4 +1,4 @@
-import { Section, SectionHead, cx, wrap } from "../ui";
+import { Section, SectionHead, cx, wrap } from "../site";
 import { PHOTOS, photoSet } from "./photos";
 
 const STORIES = [

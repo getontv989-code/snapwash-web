@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { cx } from "../ui";
+import { cx } from "../site";
 import { AVATARS } from "./photos";
 
 /* Hero phone that walks through the app. public/main.js cycles the steps: it sets data-step on #tour,

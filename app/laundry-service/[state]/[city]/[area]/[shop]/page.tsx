@@ -4,8 +4,12 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { Faq, SwitchCards } from "@/components/sections";
 import { JsonLd, LocationHero, breadcrumbLd } from "@/components/locations/blocks";
-import { ArrowIcon, CheckIcon, Kicker, Section, SectionHead, btn, cx, grid12, wrap } from "@/components/ui";
+import { ArrowIcon, CheckIcon, Kicker, Section, SectionHead, cx, grid12, wrap } from "@/components/site";
 import { getAllPaths, getShop, paths } from "@/lib/locations";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { Card } from "@/components/ui/card";
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 type Params = { state: string; city: string; area: string; shop: string };
 
@@ -81,7 +85,7 @@ export default async function ShopPage({ params }: { params: Promise<Params> }) 
           title={shop.name}
           lede={shop.summary}
           aside={
-            <div className="grid gap-5 p-card-lg rounded-card bg-surface shadow-[0_0_0_1px_var(--line)]">
+            <Card className="grid gap-5 p-card-lg">
               <div className="flex items-center gap-4">
                 <span className="w-14 h-14 rounded-[16px] grid place-items-center bg-brand text-on-brand font-display font-extrabold text-2xl leading-none flex-none" aria-hidden="true">{shop.name.charAt(0)}</span>
                 <div>
@@ -109,12 +113,12 @@ export default async function ShopPage({ params }: { params: Promise<Params> }) 
               </dl>
               <a className="inline-flex items-center gap-2 pt-5 border-t border-t-line no-underline font-semibold text-sm text-brand hover:gap-3 transition-[gap] duration-300 ease-brand"
                 href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`} target="_blank" rel="noopener">Get directions <ArrowIcon className="w-4 h-4" /></a>
-            </div>
+            </Card>
           }
         >
-          <a className={btn("primary")} href="/#download" data-magnetic>Book pickup in the app <ArrowIcon /></a>
-          {shop.website && <a className={btn("line")} href={shop.website} target="_blank" rel="noopener" data-magnetic>Visit website</a>}
-          {shop.phone && <a className={btn("line", "lg:hidden")} href={`tel:${tel}`}>Call the shop</a>}
+          <a className={buttonVariants()} href="/#download" data-magnetic>Book pickup in the app <ArrowIcon /></a>
+          {shop.website && <a className={buttonVariants({ variant: "outline" })} href={shop.website} target="_blank" rel="noopener" data-magnetic>Visit website</a>}
+          {shop.phone && <a className={cn(buttonVariants({ variant: "outline" }), "lg:hidden")} href={`tel:${tel}`}>Call the shop</a>}
         </LocationHero>
 
         {/* Key facts at a glance */}
@@ -150,17 +154,17 @@ export default async function ShopPage({ params }: { params: Promise<Params> }) 
             </div>
             <div className="reveal col-[8/-1] max-lg:col-span-full">
               <h3 className={cx(label, "mb-4")}>Opening hours</h3>
-              <table className="w-full border-collapse border-t-[1.5px] border-t-ink">
-                <caption className="sr-only">Opening hours for {shop.name}</caption>
-                <tbody>
+              <Table className="border-t-[1.5px] border-t-ink">
+                <TableCaption>Opening hours for {shop.name}</TableCaption>
+                <TableBody>
                   {shop.hours.map((h) => (
-                    <tr key={h.days} className="border-b border-b-line">
-                      <th scope="row" className="py-4 pr-4 text-left font-body font-semibold">{h.days}</th>
-                      <td className={cx("py-4 text-right tabular-nums", h.open === "Closed" ? "text-muted" : "text-ink")}>{h.open}</td>
-                    </tr>
+                    <TableRow key={h.days}>
+                      <TableHead scope="row" className="py-4 pr-4 font-body font-semibold">{h.days}</TableHead>
+                      <TableCell className={cx("py-4 text-right tabular-nums", h.open === "Closed" ? "text-muted" : "text-ink")}>{h.open}</TableCell>
+                    </TableRow>
                   ))}
-                </tbody>
-              </table>
+                </TableBody>
+              </Table>
               <p className="mt-4 text-sm text-muted">Snapwash pickup windows run on their own schedule, so you can book a pickup even when the counter is closed.</p>
             </div>
           </div>
@@ -172,28 +176,28 @@ export default async function ShopPage({ params }: { params: Promise<Params> }) 
               <SectionHead kicker="Prices" title="Services and prices." titleId="menu-title">
                 Typical prices at {shop.name}. The app prices your exact bag before you book, so the total is never a guess.
               </SectionHead>
-              <table className="reveal w-full border-collapse text-left border-t-[1.5px] border-t-ink">
-                <caption className="sr-only">Services and prices at {shop.name}</caption>
-                <thead>
-                  <tr className="border-b border-b-line">
-                    <th scope="col" className={cx(label, "py-4 pr-4")}>Service</th>
-                    <th scope="col" className={cx(label, "py-4 pr-4 max-sm:hidden")}>Turnaround</th>
-                    <th scope="col" className={cx(label, "py-4 text-right")}>Price</th>
-                  </tr>
-                </thead>
-                <tbody>
+              <Table className="reveal text-left border-t-[1.5px] border-t-ink">
+                <TableCaption>Services and prices at {shop.name}</TableCaption>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className={cx(label, "py-4 pr-4")}>Service</TableHead>
+                    <TableHead className={cx(label, "py-4 pr-4 max-sm:hidden")}>Turnaround</TableHead>
+                    <TableHead className={cx(label, "py-4 text-right")}>Price</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
                   {shop.menu.map((m) => (
-                    <tr key={m.service} className="border-b border-b-line">
-                      <th scope="row" className="py-5 pr-4 font-body font-semibold align-middle">
+                    <TableRow key={m.service}>
+                      <TableHead scope="row" className="py-5 pr-4 font-body font-semibold align-middle">
                         {m.service}
                         <span className="sm:hidden block mt-1 font-normal text-sm text-muted">{m.turnaround}</span>
-                      </th>
-                      <td className="py-5 pr-4 text-muted align-middle max-sm:hidden">{m.turnaround}</td>
-                      <td className="py-5 text-right font-display font-bold text-lg tracking-tight tabular-nums align-middle whitespace-nowrap">{m.price}</td>
-                    </tr>
+                      </TableHead>
+                      <TableCell className="py-5 pr-4 text-muted max-sm:hidden">{m.turnaround}</TableCell>
+                      <TableCell className="py-5 text-right font-display font-bold text-lg tracking-tight tabular-nums whitespace-nowrap">{m.price}</TableCell>
+                    </TableRow>
                   ))}
-                </tbody>
-              </table>
+                </TableBody>
+              </Table>
             </div>
           </Section>
         )}
@@ -204,11 +208,11 @@ export default async function ShopPage({ params }: { params: Promise<Params> }) 
               <SectionHead kicker={`Why ${shop.name.split(" ")[0]}`} title="What regulars come back for." titleId="why-title" />
               <ul className="grid grid-cols-4 gap-tile max-xl:grid-cols-2 max-sm:grid-cols-1">
                 {shop.highlights.map((h, i) => (
-                  <li key={h.title} className="reveal grid gap-3 content-start p-card rounded-card bg-surface shadow-[0_0_0_1px_var(--line)]" style={{ ["--rd" as string]: `${i * 0.08}s` }}>
+                  <Card as="li" key={h.title} className="reveal grid gap-3 content-start p-card" style={{ ["--rd" as string]: `${i * 0.08}s` }}>
                     <span className="w-10 h-10 rounded-[50%] grid place-items-center bg-wash text-brand"><CheckIcon className="w-5 h-5" /></span>
                     <h3 className="text-lg leading-[1.2] tracking-tight">{h.title}</h3>
                     <p className="text-muted text-sm">{h.body}</p>
-                  </li>
+                  </Card>
                 ))}
               </ul>
             </div>
@@ -229,8 +233,8 @@ export default async function ShopPage({ params }: { params: Promise<Params> }) 
                 </div>
               )}
               <div className="flex flex-wrap gap-3">
-                <a className={btn("line")} href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`} target="_blank" rel="noopener">Get directions</a>
-                {shop.website && <a className={btn("line")} href={shop.website} target="_blank" rel="noopener">{site}</a>}
+                <a className={buttonVariants({ variant: "outline" })} href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`} target="_blank" rel="noopener">Get directions</a>
+                {shop.website && <a className={buttonVariants({ variant: "outline" })} href={shop.website} target="_blank" rel="noopener">{site}</a>}
               </div>
             </div>
             <div className="reveal relative col-[6/-1] min-h-[360px] rounded-card overflow-hidden shadow-[0_0_0_1px_var(--line)] bg-wash max-lg:col-span-full max-lg:min-h-[280px]">

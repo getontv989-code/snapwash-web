@@ -1,6 +1,6 @@
 import type { Post } from "@/lib/blog";
 import { formatDate, readTime } from "@/lib/blog";
-import { ArrowIcon, Kicker, cx } from "../ui";
+import { ArrowIcon, Kicker, cx } from "../site";
 
 /** Brand-blue cover art: a hanger line drawing on the blue, with the category on top. */
 export function Cover({ post, size = "md", className }: { post: Post; size?: "md" | "lg"; className?: string }) {

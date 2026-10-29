@@ -32,11 +32,14 @@
     });
   }
   function setTheme(next) {
-    doc.classList.add("theme-anim");
-    doc.setAttribute("data-theme", next);
-    try { localStorage.setItem("snapwash-theme", next); } catch (e) {}
-    syncTheme();
-    setTimeout(function () { doc.classList.remove("theme-anim"); }, 450);
+    function apply() {
+      doc.setAttribute("data-theme", next);
+      try { localStorage.setItem("snapwash-theme", next); } catch (e) {}
+      syncTheme();
+    }
+    // Crossfade via a view transition (composited, one style pass); browsers without it switch instantly
+    if (document.startViewTransition && !reduce) document.startViewTransition(apply);
+    else apply();
   }
   syncTheme();
   document.addEventListener("click", function (e) {
@@ -191,7 +194,12 @@
       track.style.transform = "translate3d(" + (-k * stepPx()) + "px,0,0)";
       if (bar) bar.style.setProperty("--p", steps() ? (k / steps()).toFixed(3) : "1");
     }
-    window.addEventListener("scroll", update, { passive: true });
+    var ticking = false;
+    window.addEventListener("scroll", function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () { ticking = false; update(); });
+    }, { passive: true });
     window.addEventListener("resize", layout);
     if (mq.addEventListener) mq.addEventListener("change", layout);
     window.addEventListener("load", layout);
@@ -362,6 +370,22 @@
 
   var yr = document.getElementById("yr");
   if (yr) yr.textContent = String(new Date().getFullYear());
+
+  /* ---------- Pause looping animations while they're off screen ---------- */
+  // Marquees, pulses and dashed routes keep repainting even when nobody can see them
+  if ("IntersectionObserver" in window && document.getAnimations) {
+    var loopIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        e.target.getAnimations({ subtree: true }).forEach(function (a) {
+          var t = a.effect && a.effect.getComputedTiming ? a.effect.getComputedTiming() : null;
+          if (!t || t.iterations !== Infinity) return;
+          if (e.isIntersecting) { if (a.playState === "paused") a.play(); }
+          else if (a.playState === "running") a.pause();
+        });
+      });
+    }, { rootMargin: "200px 0px" });
+    document.querySelectorAll("main > section, main > div > section, footer").forEach(function (el) { loopIO.observe(el); });
+  }
 })();
 
 /* Footer logo re-hangs itself when it scrolls into view */

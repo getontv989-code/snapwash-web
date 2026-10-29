@@ -50,6 +50,27 @@
   color-scheme: dark;
 }
 
+/* shadcn/ui's theme variables, mapped onto the tokens above so its components follow light and dark
+   for free. `card` and `muted` keep this site's meaning (navy card, muted text), so shadcn's muted
+   text is muted-foreground and its card surface is the Card component's default variant. */
+:root {
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --primary: var(--blue);
+  --primary-foreground: var(--on-blue);
+  --secondary: color-mix(in oklab, var(--ink) 6%, transparent);
+  --secondary-foreground: var(--ink);
+  --accent: var(--blue-wash);
+  --accent-foreground: var(--ink);
+  --muted-foreground: var(--muted);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--blue);
+  --radius: 24px;
+}
+
 /* ---------- Design tokens ---------- */
 @theme inline {
   /* Colors that follow the theme */
@@ -69,6 +90,21 @@
   --color-night-fg: var(--night-fg);
   --color-night-muted: var(--night-muted);
   --color-night-line: var(--night-line);
+  /* shadcn/ui names for the same colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
   /* Fixed colors (same in both themes): the logo blue, the phone navy, and the app mockup palette */
   --color-white: #FFFFFF;
   --color-transparent: transparent;
@@ -162,10 +198,9 @@
   :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
 }
 
-/* Smooth crossfade while the theme switches */
-.theme-anim, .theme-anim *, .theme-anim *::before, .theme-anim *::after {
-  transition: background-color .4s var(--ease), color .4s var(--ease), border-color .4s var(--ease), fill .4s var(--ease), box-shadow .4s var(--ease) !important;
-}
+/* Theme switch: main.js swaps the theme inside a view transition, so the browser crossfades two
+   snapshots on the GPU instead of transitioning the colors of every element on the page */
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .4s; animation-timing-function: cubic-bezier(.16, 1, .3, 1); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
@@ -197,7 +232,7 @@
 @keyframes marquee { to { transform: translateX(-50%); } }
 @keyframes dash { to { stroke-dashoffset: -28; } }
 @keyframes grow { from { transform: scaleY(0); } }
-@keyframes beam { from { top: 4%; } to { top: 94%; } }
+@keyframes beam { from { transform: translateY(0); } to { transform: translateY(100%); } }
 @keyframes boxIn { from { opacity: 0; transform: scale(1.12); } to { opacity: 1; transform: none; } }
 @keyframes hangerDraw { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
 @keyframes hangerSwing { 0% { transform: rotate(0); } 18% { transform: rotate(-9deg); } 40% { transform: rotate(6deg); } 60% { transform: rotate(-3.5deg); } 80% { transform: rotate(1.5deg); } 100% { transform: rotate(0); } }

@@ -1,11 +1,12 @@
 import type { ReactNode } from "react";
-import { ArrowIcon, Kicker, Section, cx, grid12, tone, wrap } from "./ui";
+import { ArrowIcon, Kicker, Section, cx, grid12, tone, wrap } from "./site";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
 
 /* ---------- FAQ ---------- */
 
 export type FaqItem = { id: string; q: string; a: ReactNode };
 
-/** Sticky title on the left, accordion on the right. */
+/** Sticky title on the left, accordion (shadcn/ui Accordion) on the right. */
 export function Faq({ id, kicker, title, items, night = false }: { id?: string; kicker: string; title: ReactNode; items: FaqItem[]; night?: boolean }) {
   return (
     <Section id={id} className={cx("pt-0", night && tone.night)} aria-labelledby="faq-title">
@@ -15,21 +16,25 @@ export function Faq({ id, kicker, title, items, night = false }: { id?: string; 
           <h2 id="faq-title" className="text-2xl leading-none tracking-display sticky top-[120px] max-lg:static">{title}</h2>
         </div>
         <div className="reveal col-[6/-1] border-t-[1.5px] border-t-current max-lg:col-span-full">
-          {items.map((it) => (
-            <details key={it.id} id={it.id} className="group/faq border-b border-b-line">
-              <summary className="list-none list-outside [&::-webkit-details-marker]:hidden cursor-pointer grid grid-cols-[1fr_36px] gap-5 items-center py-5 font-body font-semibold text-lg leading-[1.3] [transition:color_.25s_var(--ease),padding_.4s_var(--ease)] hover:text-brand hover:pl-2">
-                {it.q}
-                <span className={cx(
-                  "w-9 h-9 rounded-[50%] relative [transition:transform_.5s_var(--ease),rotate_.5s_var(--ease),background-color_.3s]",
-                  night ? "bg-night-2" : "bg-wash",
-                  "before:absolute before:left-1/2 before:top-1/2 before:w-[14px] before:h-0.5 before:rounded-[2px] before:bg-current before:[transform:translate(-50%,-50%)] before:transition-transform before:duration-500 before:ease-brand",
-                  "after:absolute after:left-1/2 after:top-1/2 after:w-[14px] after:h-0.5 after:rounded-[2px] after:bg-current after:[transform:translate(-50%,-50%)_rotate(90deg)] after:transition-transform after:duration-500 after:ease-brand",
-                  "group-open/faq:bg-brand group-open/faq:text-on-brand group-open/faq:rotate-180 group-open/faq:after:[transform:translate(-50%,-50%)_rotate(0)]",
-                )} aria-hidden="true"></span>
-              </summary>
-              <p className="pb-[22px] max-w-[60ch] text-muted group-open/faq:animate-[fadeUp_.5s_var(--ease)]">{it.a}</p>
-            </details>
-          ))}
+          <Accordion type="multiple">
+            {items.map((it) => (
+              <AccordionItem key={it.id} value={it.id} id={it.id} className="group/faq">
+                <AccordionTrigger className="grid grid-cols-[1fr_36px] gap-5 items-center py-5 font-body font-semibold text-lg leading-[1.3] [transition:color_.25s_var(--ease),padding_.4s_var(--ease)] hover:text-brand hover:pl-2">
+                  {it.q}
+                  <span className={cx(
+                    "w-9 h-9 rounded-[50%] relative [transition:transform_.5s_var(--ease),rotate_.5s_var(--ease),background-color_.3s]",
+                    night ? "bg-night-2" : "bg-wash",
+                    "before:absolute before:left-1/2 before:top-1/2 before:w-[14px] before:h-0.5 before:rounded-[2px] before:bg-current before:[transform:translate(-50%,-50%)] before:transition-transform before:duration-500 before:ease-brand",
+                    "after:absolute after:left-1/2 after:top-1/2 after:w-[14px] after:h-0.5 after:rounded-[2px] after:bg-current after:[transform:translate(-50%,-50%)_rotate(90deg)] after:transition-transform after:duration-500 after:ease-brand",
+                    "group-data-[state=open]/faq:bg-brand group-data-[state=open]/faq:text-on-brand group-data-[state=open]/faq:rotate-180 group-data-[state=open]/faq:after:[transform:translate(-50%,-50%)_rotate(0)]",
+                  )} aria-hidden="true"></span>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <p className="pb-[22px] max-w-[60ch] text-muted group-data-[state=open]/faq:animate-[fadeUp_.5s_var(--ease)]">{it.a}</p>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </div>
     </Section>

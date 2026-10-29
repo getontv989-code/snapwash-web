@@ -4,7 +4,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import AppBand from "@/components/blog/AppBand";
 import { Cover, PostCard, PostMeta } from "@/components/blog/PostCard";
-import { Kicker, Section, cx, grid12, wrap } from "@/components/ui";
+import { Kicker, Section, cx, grid12, wrap } from "@/components/site";
 import { hero } from "@/components/hero";
 import { type Block, getPost, getPosts, wordCount } from "@/lib/blog";
 

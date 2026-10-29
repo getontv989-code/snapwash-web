@@ -1,6 +1,6 @@
 import Logo from "./Logo";
 import { RETAILER_LOGIN_URL } from "./SiteHeader";
-import { cx, wrap } from "./ui";
+import { cx, wrap } from "./site";
 import { STATES } from "@/lib/locations/data";
 import { paths } from "@/lib/locations";
 
