@@ -4,7 +4,7 @@ import { PHOTOS, photoSet } from "./photos";
 const STORIES = [
   { photo: PHOTOS.door, tag: "At your door", title: "A knock, not a trip.", body: "Your driver comes up to the door in the window you picked. Hand over the bag and get on with your evening.", pos: "object-[38%_50%]",
     span: "col-span-7 row-span-2 min-h-[clamp(420px,46vw,640px)]", sizes: "(max-width: 900px) 100vw, 58vw" },
-  { photo: PHOTOS.van, tag: "On the road", title: "Local drivers, tracked live.", body: "Neighbors on the route between your block and your cleaner, on the map the whole way.", pos: "object-[50%_12%]",
+  { photo: PHOTOS.van, tag: "On the road", title: "Local drivers, tracked live.", body: "Neighbors on the route between your block and your cleaner, on the map the whole way.", pos: "object-[50%_55%]",
     span: "col-span-5 min-h-[clamp(260px,22vw,310px)] [--rd:.08s]", sizes: "(max-width: 900px) 100vw, 42vw" },
   { photo: PHOTOS.shop, tag: "At the cleaner", title: "Cared for by people.", body: "The shop you chose washes, presses and bags your order, then hands it straight to your driver.", pos: "object-[50%_35%]",
     span: "col-span-5 min-h-[clamp(260px,22vw,310px)] [--rd:.16s]", sizes: "(max-width: 900px) 100vw, 42vw" },
