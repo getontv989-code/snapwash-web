@@ -10,12 +10,12 @@ export function photoSet(p: Photo) {
 }
 
 export const PHOTOS = {
-  door: { name: "doorstep", widths: [800, 1600], alt: "A customer at her front door with a bag of laundry ready for pickup" },
-  van: { name: "basket", widths: [600, 1200], alt: "Hands lifting fresh white laundry from a woven basket" },
-  shop: { name: "laundromat", widths: [800, 1600], alt: "A smiling laundromat attendant loading a basket of clothes beside the washers" },
+  door: { name: "service", widths: [800, 1600], alt: "A laundry attendant in white gloves holding a stack of freshly folded towels" },
+  van: { name: "shirt", widths: [600, 1200], alt: "A crisp white shirt on a hanger" },
+  shop: { name: "facility", widths: [800, 1600], alt: "An attendant unloading fresh linens beside industrial washers" },
   fresh: { name: "folded", widths: [600, 1200], alt: "A stack of freshly folded shirts" },
-  pickup: { name: "drive-pickup", widths: [600, 1200], alt: "A basket of laundry ready to be collected" },
-  dropoff: { name: "drive-dropoff", widths: [600, 1200], alt: "An attendant unpacking a laundry bag at a partner laundromat" },
+  pickup: { name: "drive-pickup", widths: [600, 1200], alt: "Clean white shirts on hangers, ready to go" },
+  dropoff: { name: "drive-dropoff", widths: [600, 1200], alt: "An industrial washer and a cart of fresh linens at a partner laundry" },
   handover: { name: "drive-handover", widths: [600, 1200], alt: "A stack of freshly folded clothes, ready to go home" },
   team: { name: "cleaners-team", widths: [800, 1600], alt: "Laundry bags being sorted at a commercial laundry" },
   label: { name: "cleaners-label", widths: [400, 560], alt: "A white shirt being steamed on a hanger" },
