@@ -1,6 +1,7 @@
-/* Laundry photography, self-hosted in public/people: a busy professional laundry. Stills from Pexels photos and
-   4K Pexels footage (Pexels License) plus one Unsplash photo (Unsplash License), all free for commercial use,
-   cropped and given one studio grade (neutral whites, lifted navy shadows). Two widths each. */
+/* Laundry photography, self-hosted in public/people. Delivery and pickup slots show packed, folded clean laundry
+   (Pexels photos 4440574, 6466228, 8346226, 7310204, 9185814); the rest are stills from Pexels photos and 4K Pexels
+   footage of a busy professional laundry. All Pexels License, free for commercial use, cropped and given one studio
+   grade (neutral whites, lifted navy shadows). Two widths each. */
 
 type Photo = { name: string; widths: [number, number]; alt: string };
 
@@ -11,13 +12,13 @@ export function photoSet(p: Photo) {
 }
 
 export const PHOTOS = {
-  door: { name: "facility", widths: [800, 1600], alt: "An attendant at work on a busy laundry floor lined with industrial washers" },
-  van: { name: "carts", widths: [600, 1200], alt: "A cart piled with fresh towels rolling through a professional laundry" },
+  door: { name: "packed-door", widths: [800, 1600], alt: "A neat stack of freshly folded shirts, packed and ready to hand over" },
+  van: { name: "packed-road", widths: [600, 1200], alt: "A laundry pro carrying a tall stack of crisp folded white towels" },
   shop: { name: "team-unload", widths: [800, 1600], alt: "Two laundry pros unloading fresh linens from an industrial washer" },
-  fresh: { name: "washers", widths: [600, 1200], alt: "Industrial washers full of towels with a loaded laundry cart" },
-  pickup: { name: "drive-pickup", widths: [600, 1200], alt: "A rack of freshly pressed dress shirts on hangers" },
+  fresh: { name: "packed-proof", widths: [600, 1200], alt: "A delivered order of folded clean clothes, stacked and ready" },
+  pickup: { name: "packed-pickup", widths: [600, 1200], alt: "Hands smoothing a stack of folded clean T-shirts" },
   dropoff: { name: "drive-dropoff", widths: [600, 1200], alt: "A loaded industrial washer at a partner laundry" },
-  handover: { name: "drive-handover", widths: [600, 1200], alt: "A cart full of clean towels ready to go back out" },
+  handover: { name: "packed-handover", widths: [600, 1200], alt: "Hands passing over a stack of freshly folded laundry" },
   team: { name: "cleaners-team", widths: [800, 1600], alt: "Rows of industrial washers and laundry carts at a partner laundry" },
   label: { name: "cleaners-label", widths: [400, 560], alt: "A laundry pro loading an industrial dryer" },
 } satisfies Record<string, Photo>;
