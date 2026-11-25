@@ -49,7 +49,7 @@ export default function Features() {
             <h3 className={h3}>Proof of delivery</h3>
             <p className={cx(body, "text-card-fg/75")}>Every drop-off is documented, so you know exactly where your bag was left.</p>
             <div className="mt-auto relative h-[132px] rounded-[18px] overflow-hidden">
-              <img {...photoSet(PHOTOS.door)} sizes="(max-width: 900px) 100vw, 30vw" alt="A driver handing an order to a customer at her door" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover object-[40%_60%]" />
+              <img {...photoSet(PHOTOS.fresh)} sizes="(max-width: 900px) 100vw, 30vw" alt={PHOTOS.fresh.alt} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover object-[50%_55%]" />
               <span className="absolute left-2.5 bottom-2.5 py-[7px] px-[11px] rounded-pill bg-white text-navy font-body font-semibold text-xs leading-none">Delivered · 8:41 PM</span>
             </div>
           </Card>
