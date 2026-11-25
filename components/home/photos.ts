@@ -1,5 +1,6 @@
-/* Laundry photography, self-hosted in public/people. Pexels photos (Pexels License: free for commercial use,
-   no attribution required), cropped and given one studio grade (neutral whites, lifted navy shadows). Two widths each. */
+/* Laundry photography, self-hosted in public/people: a busy professional laundry. Stills from Pexels photos and
+   4K Pexels footage (Pexels License) plus one Unsplash photo (Unsplash License), all free for commercial use,
+   cropped and given one studio grade (neutral whites, lifted navy shadows). Two widths each. */
 
 type Photo = { name: string; widths: [number, number]; alt: string };
 
@@ -10,15 +11,15 @@ export function photoSet(p: Photo) {
 }
 
 export const PHOTOS = {
-  door: { name: "service", widths: [800, 1600], alt: "A laundry attendant in white gloves holding a stack of freshly folded towels" },
-  van: { name: "shirt", widths: [600, 1200], alt: "A crisp white shirt on a hanger" },
-  shop: { name: "facility", widths: [800, 1600], alt: "An attendant unloading fresh linens beside industrial washers" },
-  fresh: { name: "folded", widths: [600, 1200], alt: "A stack of freshly folded shirts" },
-  pickup: { name: "drive-pickup", widths: [600, 1200], alt: "Clean white shirts on hangers, ready to go" },
-  dropoff: { name: "drive-dropoff", widths: [600, 1200], alt: "An industrial washer and a cart of fresh linens at a partner laundry" },
-  handover: { name: "drive-handover", widths: [600, 1200], alt: "A stack of freshly folded clothes, ready to go home" },
-  team: { name: "cleaners-team", widths: [800, 1600], alt: "Laundry bags being sorted at a commercial laundry" },
-  label: { name: "cleaners-label", widths: [400, 560], alt: "A white shirt being steamed on a hanger" },
+  door: { name: "facility", widths: [800, 1600], alt: "An attendant at work on a busy laundry floor lined with industrial washers" },
+  van: { name: "carts", widths: [600, 1200], alt: "A cart piled with fresh towels rolling through a professional laundry" },
+  shop: { name: "team-unload", widths: [800, 1600], alt: "Two laundry pros unloading fresh linens from an industrial washer" },
+  fresh: { name: "washers", widths: [600, 1200], alt: "Industrial washers full of towels with a loaded laundry cart" },
+  pickup: { name: "drive-pickup", widths: [600, 1200], alt: "A rack of freshly pressed dress shirts on hangers" },
+  dropoff: { name: "drive-dropoff", widths: [600, 1200], alt: "A loaded industrial washer at a partner laundry" },
+  handover: { name: "drive-handover", widths: [600, 1200], alt: "A cart full of clean towels ready to go back out" },
+  team: { name: "cleaners-team", widths: [800, 1600], alt: "Rows of industrial washers and laundry carts at a partner laundry" },
+  label: { name: "cleaners-label", widths: [400, 560], alt: "A laundry pro loading an industrial dryer" },
 } satisfies Record<string, Photo>;
 
 /** Small round portraits used as human touches around the page. */
